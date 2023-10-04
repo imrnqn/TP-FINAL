@@ -32,24 +32,24 @@ public class DietaComidaData {
         String sql = "INSERT INTO dietaComida (idDieta, idComida)"
                 + " VALUES ( ?, ?)";
         PreparedStatement ps;
-        try {
-            
+                   
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
             ps.setInt(2, comida.getIdComida());
-            int fila = ps.executeUpdate();
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Comida añadida con exito a la Dieta.");
-            }
-            ps.close();
+            try {
+                int fila = ps.executeUpdate();
+                if (fila == 1) {
+                    JOptionPane.showMessageDialog(null, "Comida añadida con exito a la Dieta.");
+                }
+                ps.close();
 
-        } catch (SQLException ex) {
-            if (ex.getErrorCode()== 1062){
-                JOptionPane.showMessageDialog(null, "Error, Dato duplicado.");
-            }else  {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la BD.");
+             } catch (SQLException ex){
+                 if (ex.getErrorCode()== 1062){
+                    JOptionPane.showMessageDialog(null, "Error, Dato duplicado.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al acceder a la BD.");
+                 }
             }
-        }
     }
 }
 
