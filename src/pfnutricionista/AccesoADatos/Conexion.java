@@ -41,7 +41,6 @@ public class Conexion {
                     JOptionPane.showMessageDialog(null, "Error de carga Drivers.");
             }
         }
-        System.out.println(" hola");
     return conexion;
     }
     
