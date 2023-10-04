@@ -6,7 +6,8 @@
 package pfnutricionista.entidades;
 
 import static java.time.temporal.TemporalQueries.localDate;
-import java.util.Date;
+import java.time.LocalDate;
+//import java.util.Date;
 
 /**
  *
@@ -16,16 +17,16 @@ public class Dieta {
     private int idDieta;
     private String nombre;
     private Paciente paciente;
-    private Date fechaInicial;
+    private LocalDate fechaInicial;
     private double pesoInicial;
     private double pesoFinal;
-    private Date fechaFinal;
+    private LocalDate fechaFinal;
     private boolean estado;
 
     public Dieta() {
     }
 
-    public Dieta(int idDieta, String nombre, Paciente paciente, Date fechaInicial, double pesoInicial, double pesoFinal, Date fechaFinal, boolean estado) {
+    public Dieta(int idDieta, String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal, boolean estado) {
         this.idDieta = idDieta;
         this.nombre = nombre;
         this.paciente = paciente;
@@ -36,7 +37,7 @@ public class Dieta {
         this.estado = estado;
     }
 
-    public Dieta(String nombre, Paciente paciente, Date fechaInicial, double pesoInicial, double pesoFinal, Date fechaFinal, boolean estado) {
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal, boolean estado) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicial = fechaInicial;
@@ -80,11 +81,11 @@ public class Dieta {
         this.paciente = paciente;
     }
 
-    public Date getFechaInicial() {
+    public LocalDate getFechaInicial() {
         return fechaInicial;
     }
 
-    public void setFechaInicial(Date fechaInicial) {
+    public void setFechaInicial(LocalDate fechaInicial) {
         this.fechaInicial = fechaInicial;
     }
 
@@ -104,17 +105,17 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
     }
 
-    public Date getFechaFinal() {
+    public LocalDate getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 
     @Override
     public String toString() {
-        return idDieta + ", " + nombre + ", paciente=" + paciente + ", fechaInicial=" + fechaInicial + ", pesoInicial=" + pesoInicial + ", pesoFinal=" + pesoFinal + ", fechaFinal=" + fechaFinal;
+        return idDieta + ", " + nombre + ", paciente=" + paciente + ", fechaInicial=" + fechaInicial + ", pesoInicial=" + pesoInicial + ", pesoFinal=" + pesoFinal + ", fechaFinal=" + fechaFinal+ ", estado=" + estado;
     }
     
     

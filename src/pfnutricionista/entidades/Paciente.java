@@ -12,6 +12,7 @@ package pfnutricionista.entidades;
 public class Paciente {
     private int idPaciente;
     private String nombre;
+    private String apellido;
     private int dni;
     private String domicilio;
     private String telefono;
@@ -20,17 +21,19 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(int idPaciente, String nombre, int dni, String domicilio, String telefono, boolean estado) {
+    public Paciente(int idPaciente, String nombre, String apellido, int dni, String domicilio, String telefono, boolean estado) {
         this.idPaciente = idPaciente;
         this.nombre = nombre;
+        this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.estado = estado;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, boolean estado) {
+    public Paciente(String nombre, String apellido, int dni, String domicilio, String telefono, boolean estado) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
@@ -62,7 +65,15 @@ public class Paciente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String getApellido() {
+        return nombre;
+    }
 
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
     public int getDni() {
         return dni;
     }
@@ -89,8 +100,9 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente{" + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
+        return "Paciente{" + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + ", estado=" + estado + '}';
     }
+
     
     
     

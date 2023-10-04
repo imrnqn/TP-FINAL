@@ -37,16 +37,18 @@ public class DietaComidaData {
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
             ps.setInt(2, comida.getIdComida());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                //insc.setIdInscripcion(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Inscripción añadida con exito.");
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Comida añadida con exito a la Dieta.");
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error acceder a la tabla Inscripcion.");
+            if (ex.getErrorCode()== 1062){
+                JOptionPane.showMessageDialog(null, "Error, Dato duplicado.");
+            }else  {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la BD.");
+            }
         }
     }
 }
