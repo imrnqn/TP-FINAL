@@ -43,7 +43,7 @@ public class DietaComidaData {
                 ps.close();
              } catch (SQLException ex){
                  if (ex.getErrorCode()== 1062){
-                    JOptionPane.showMessageDialog(null, "Error. Dato duplicado.");
+                    JOptionPane.showMessageDialog(null, "Error. El paciente.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al acceder a la BD.");
                  }
