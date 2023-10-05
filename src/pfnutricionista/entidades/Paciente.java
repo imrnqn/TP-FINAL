@@ -67,7 +67,7 @@ public class Paciente {
     }
     
     public String getApellido() {
-        return nombre;
+        return apellido;
     }
 
     public void setApellido(String apellido) {

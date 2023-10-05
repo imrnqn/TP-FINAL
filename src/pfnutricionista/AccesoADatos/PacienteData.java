@@ -23,11 +23,12 @@ public class PacienteData {
     
     private  Connection conexion = null;
 
+//ok
     public PacienteData() {
         this.conexion=Conexion.getConnection();
     }
     
-            
+//ok            
     public void guardarPaciente (Paciente paciente){
         String sql = "INSERT INTO paciente (nombre, apellido, dni, domicilio, telefono, estado )"
                 + " VALUES ( ?, ?, ?, ?, ?, ?)";
@@ -41,8 +42,8 @@ public class PacienteData {
             ps.setString(5,paciente.getTelefono());
             ps.setBoolean(6, true);
                      
-                int fila = ps.executeUpdate();
-                if (fila == 1) {
+                int exito = ps.executeUpdate();
+                if (exito == 1) {
                     JOptionPane.showMessageDialog(null, "Paciente añadido con exito.");
                 }
                 ps.close();
@@ -55,22 +56,21 @@ public class PacienteData {
             }
     }
 
+//ok
     public void modificarPaciente(Paciente paciente) {
 
-        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?, estado = ?";
+        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?  WHERE idPaciente = ?";
         PreparedStatement ps;
 
         try {
-
             ps = conexion.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setString(2, paciente.getApellido());
             ps.setInt(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5,paciente.getTelefono());
-            
+            ps.setInt(6, paciente.getIdPaciente());
             int exito = ps.executeUpdate();
-
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente modiificado exitosamente. ");
             } else {
@@ -82,19 +82,19 @@ public class PacienteData {
         }
     }
 
-//OK
-    public void eliminarAlumno(int id) {
+//ok
+    public void eliminarPaciente(int idPac) {
         PreparedStatement ps;
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
+            String sql = "UPDATE paciente SET estado = 0 WHERE idPaciente = ? ";
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, id);
-            int fila = ps.executeUpdate();
-            if (fila == 1) {
+            ps.setInt(1, idPac);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Se elimino el alumno. ");
             }
             ps.close();
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabal Alumno. ");
         }
     }
