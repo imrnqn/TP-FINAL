@@ -8,6 +8,7 @@ package pfnutricionista.AccesoADatos;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -99,8 +100,40 @@ public class PacienteData {
         }
     }
 
+public Paciente buscarPaciente(String apellido, String nombre, int dni){
+        Paciente paciente = null;
+        apellido = apellido+"%";
+        nombre = nombre+"%";
+        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE ? OR nombre LIKE ?) AND dni>=? AND estado = true";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, apellido);
+            ps.setString(2, nombre);
+            ps.setInt(3, dni);
 
+            ResultSet rs = ps.executeQuery();
 
+            if (rs.next()) {
+                paciente = new Paciente();
+                paciente.setIdPaciente(rs.getInt("idpaciente"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setEstado(true);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "El paciente existe.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes.");
+        }
+        //System.out.println("Alumno " + alumno.getApellido() + " " + alumno.getNombre());
+        return paciente;
+}
 
 
 
