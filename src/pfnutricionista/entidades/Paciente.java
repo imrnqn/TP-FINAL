@@ -40,6 +40,14 @@ public class Paciente {
         this.estado = estado;
     }
 
+    public Paciente(String nombre, String apellido, int dni, String domicilio, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+    
     public boolean isEstado() {
         return estado;
     }

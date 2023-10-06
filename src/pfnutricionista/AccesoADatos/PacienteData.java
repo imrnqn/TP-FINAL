@@ -73,13 +73,13 @@ public class PacienteData {
             ps.setInt(6, paciente.getIdPaciente());
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Paciente modiificado exitosamente. ");
+                JOptionPane.showMessageDialog(null, "Los datos del paciente furon modiificados exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El paciente no existe. ");
+                JOptionPane.showMessageDialog(null, "El paciente no existe.");
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes. ");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes.");
         }
     }
 
@@ -92,19 +92,21 @@ public class PacienteData {
             ps.setInt(1, idPac);
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Se elimino el alumno. ");
+                JOptionPane.showMessageDialog(null, "Se elimino el Paciente. ");
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabal Alumno. ");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabal Paciente. ");
         }
     }
 
-public Paciente buscarPaciente(String apellido, String nombre, int dni){
+
+//ok
+    public Paciente buscarPaciente(String apellido, String nombre, int dni){
         Paciente paciente = null;
         apellido = apellido+"%";
         nombre = nombre+"%";
-        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE ? OR nombre LIKE ?) AND dni>=? AND estado = true";
+        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE ? OR nombre LIKE ? OR dni>=?) AND estado = true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -131,14 +133,7 @@ public Paciente buscarPaciente(String apellido, String nombre, int dni){
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes.");
         }
-        //System.out.println("Alumno " + alumno.getApellido() + " " + alumno.getNombre());
-        return paciente;
-}
-
-
-
-
-
-
+    return paciente;
+    }
 
 }
