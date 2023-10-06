@@ -49,5 +49,48 @@ public class DietaComidaData {
                  }
             }
     }
+    
+        public void finalizarDieta(int idDieta) {
+        String sql = "UPDATE dieta SET fechaFin = CURRENT_DATE WHERE idDieta = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, idDieta);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Dieta finalizada con éxito.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al finalizar la dieta: " + ex.getMessage());
+        }
+    }
+        
+        public void guardarDieta(Dieta dieta) {
+        String sql = "INSERT INTO dieta (idPaciente, fechaInicio, fechaFin, pesoInicial, pesoBuscado) "
+                   + "VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, dieta.getPaciente().getIdPaciente());
+            ps.setDate(2, new java.sql.Date(dieta.getFechaInicio().getTime()));
+            ps.setDate(3, new java.sql.Date(dieta.getFechaFin().getTime()));
+            ps.setDouble(4, dieta.getPesoInicial());
+           
+
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Dieta guardada con éxito.");
+            }
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    dieta.setIdDieta(rs.getInt(1));
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al guardar la dieta: " + ex.getMessage());
+        }
+    }
+    
+    
+     
+    
+    
 }
 
