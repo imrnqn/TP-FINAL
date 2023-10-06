@@ -5,6 +5,10 @@
  */
 package pfnutricionista.Vistas;
 
+import javax.swing.JOptionPane;
+import pfnutricionista.AccesoADatos.PacienteData;
+import pfnutricionista.entidades.Paciente;
+
 /**
  *
  * @author ivanm
@@ -16,6 +20,10 @@ public class abmPacientes extends javax.swing.JInternalFrame {
      */
     public abmPacientes() {
         initComponents();
+        
+        
+       
+        
     }
 
     /**
@@ -27,26 +35,25 @@ public class abmPacientes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jtNombre = new javax.swing.JTextField();
+        jtApellido = new javax.swing.JTextField();
+        jtDni = new javax.swing.JTextField();
+        jtDomicilio = new javax.swing.JTextField();
+        jtTelefono = new javax.swing.JTextField();
+        jbAlta = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
+        jbBaja = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PACIENTES");
+        setClosable(requestFocusInWindow());
+        setIconifiable(true);
+        setTitle("Ficha de Pacientes");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 0));
@@ -68,30 +75,60 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(51, 153, 0));
         jLabel6.setText("Telefono");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtApellidoActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtDomicilio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtTelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Alta");
-        jButton1.setToolTipText("");
+        jbAlta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbAlta.setText("Alta");
+        jbAlta.setToolTipText("");
+        jbAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Buscar");
+        jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("Modificar");
-        jButton3.setActionCommand("jbModificar");
-        jButton3.setAutoscrolls(true);
+        jbModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbModificar.setText("Modificar");
+        jbModificar.setActionCommand("jbModificar");
+        jbModificar.setAutoscrolls(true);
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setText("Baja");
+        jbBaja.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbBaja.setText("Baja");
+        jbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("PACIENTE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,75 +146,131 @@ public class abmPacientes extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtNombre)
+                            .addComponent(jtApellido)
+                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtDomicilio)
+                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtApellidoActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        Paciente paciente = new Paciente();
+        PacienteData pacienteData = new PacienteData();
+        if (jtDni.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
+        }
+        paciente.setApellido(jtApellido.getText());
+        paciente.setNombre(jtNombre.getText());
+        paciente.setDni(Integer.parseInt(jtDni.getText()));
+        paciente.setDomicilio(jtDomicilio.getText());
+        paciente.setTelefono(jtTelefono.getText());
+        pacienteData.modificarPaciente(paciente);
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        Paciente paciente = new Paciente();
+        PacienteData pacienteData = new PacienteData();
+        if (jtDni.getText().equals("")){
+            jtDni.setText("0");
+        }
+        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+        jtApellido.setText(paciente.getApellido());
+        jtNombre.setText(paciente.getNombre());
+        jtDni.setText(Integer.toString(paciente.getDni()));
+        jtDomicilio.setText(paciente.getDomicilio());
+        jtTelefono.setText((paciente.getTelefono()));
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
+        Paciente paciente = new Paciente();
+        PacienteData pacienteData = new PacienteData();
+        if (jtDni.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
+        }
+        paciente.setApellido(jtApellido.getText());
+        paciente.setNombre(jtNombre.getText());
+        paciente.setDni(Integer.parseInt(jtDni.getText()));
+        paciente.setDomicilio(jtDomicilio.getText());
+        paciente.setTelefono(jtTelefono.getText());
+        pacienteData.guardarPaciente(paciente);
+    }//GEN-LAST:event_jbAltaActionPerformed
+
+    private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
+        Paciente paciente = new Paciente();
+        PacienteData pacienteData = new PacienteData();
+        if (jtDni.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
+        }
+        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+        pacienteData.eliminarPaciente(paciente.getIdPaciente());
+    }//GEN-LAST:event_jbBajaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton jbAlta;
+    private javax.swing.JButton jbBaja;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbModificar;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtDomicilio;
+    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtTelefono;
     // End of variables declaration//GEN-END:variables
 }
