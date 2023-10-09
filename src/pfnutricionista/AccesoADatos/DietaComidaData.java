@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Dieta;
@@ -66,10 +67,12 @@ public class DietaComidaData {
         public void guardarDieta(Dieta dieta) {
         String sql = "INSERT INTO dieta (idPaciente, fechaInicio, fechaFin, pesoInicial, pesoBuscado) "
                    + "VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        PreparedStatement ps;
+        try{
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getPaciente().getIdPaciente());
-            ps.setDate(2, new java.sql.Date(dieta.getFechaInicio().getTime()));
-            ps.setDate(3, new java.sql.Date(dieta.getFechaFin().getTime()));
+            ps.setObject(2, ((LocalDate)dieta.getFechaInicial()));
+            ps.setObject(3, ((LocalDate)dieta.getFechaFinal()));
             ps.setDouble(4, dieta.getPesoInicial());
            
 
@@ -87,10 +90,6 @@ public class DietaComidaData {
             JOptionPane.showMessageDialog(null, "Error al guardar la dieta: " + ex.getMessage());
         }
     }
-    
-    
-     
-    
     
 }
 
