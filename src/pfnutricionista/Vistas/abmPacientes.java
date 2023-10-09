@@ -51,7 +51,6 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         jbBaja = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
-        setClosable(requestFocusInWindow());
         setIconifiable(true);
         setTitle("Ficha de Pacientes");
 
@@ -76,6 +75,11 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         jLabel6.setText("Telefono");
 
         jtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -83,12 +87,32 @@ public class abmPacientes extends javax.swing.JInternalFrame {
                 jtApellidoActionPerformed(evt);
             }
         });
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
 
         jtDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
+            }
+        });
 
         jtDomicilio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDomicilioKeyTyped(evt);
+            }
+        });
 
         jtTelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
+            }
+        });
 
         jbAlta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbAlta.setText("Alta");
@@ -221,14 +245,22 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         Paciente paciente = new Paciente();
         PacienteData pacienteData = new PacienteData();
         if (jtDni.getText().equals("")){
-            jtDni.setText("0");
+            JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
+            jtDni.requestFocus();
+            
+        } else {
+            paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+            if (paciente==null){
+                jtApellido.setText(null); jtNombre.setText(null); jtDni.setText(null); jtDomicilio.setText(null); jtTelefono.setText(null);
+                jtNombre.requestFocus();
+            } else {
+                jtApellido.setText(paciente.getApellido());
+                jtNombre.setText(paciente.getNombre());
+                jtDni.setText(Integer.toString(paciente.getDni()));
+                jtDomicilio.setText(paciente.getDomicilio());
+                jtTelefono.setText((paciente.getTelefono()));
+            }
         }
-        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
-        jtApellido.setText(paciente.getApellido());
-        jtNombre.setText(paciente.getNombre());
-        jtDni.setText(Integer.toString(paciente.getDni()));
-        jtDomicilio.setText(paciente.getDomicilio());
-        jtTelefono.setText((paciente.getTelefono()));
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
@@ -254,6 +286,38 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
         pacienteData.eliminarPaciente(paciente.getIdPaciente());
     }//GEN-LAST:event_jbBajaActionPerformed
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros){
+            evt.consume();
+        }
+        if(jtDni.getText().length() >= 8){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniKeyTyped
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        jtNombre.setText (jtNombre.getText().toUpperCase());
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        jtApellido.setText (jtApellido.getText().toUpperCase());
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57 || key == 45;
+        if (!numeros){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
+
+    private void jtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDomicilioKeyTyped
+        jtDomicilio.setText (jtDomicilio.getText().toUpperCase());
+    }//GEN-LAST:event_jtDomicilioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -59,10 +59,10 @@ public class PacienteData {
 
 //ok
     public void modificarPaciente(Paciente paciente) {
-
+        PacienteData pacienteData = new PacienteData();
         String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?  WHERE idPaciente = ?";
         PreparedStatement ps;
-
+        paciente = pacienteData.buscarPaciente(paciente.getApellido() , paciente.getNombre(), paciente.getDni());
         try {
             ps = conexion.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
@@ -106,7 +106,11 @@ public class PacienteData {
         Paciente paciente = null;
         apellido = apellido+"%";
         nombre = nombre+"%";
-        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE ? OR nombre LIKE ? OR dni>=?) AND estado = true";
+        
+        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
+                + "WHERE ((apellido LIKE ? OR nombre LIKE ?) AND dni LIKE ? AND estado = true)";
+        
+        //SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE 'H%' OR nombre LIKE ' %') AND dni LIKE 3% AND estado = true 
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -127,7 +131,7 @@ public class PacienteData {
                 paciente.setEstado(true);
                 
             } else {
-                JOptionPane.showMessageDialog(null, "El paciente existe.");
+                JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
             }
             ps.close();
         } catch (SQLException ex) {
