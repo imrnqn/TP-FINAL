@@ -181,12 +181,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
         // TODO add your handling code here:
-        principal.removeAll();
+        /*principal.removeAll();
         principal.repaint();
         abmPacientes pac = new abmPacientes();
         pac.setVisible(true);
         principal.add(pac);
-        principal.moveToFront(pac);
+        principal.moveToFront(pac);*/
+        //corregido
+        abmPacientes pac = new abmPacientes();
+        principal.add(pac);
+        pac.show();
     }//GEN-LAST:event_jbPacientesActionPerformed
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
