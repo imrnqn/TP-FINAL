@@ -18,7 +18,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setExtendedState(this.MAXIMIZED_BOTH); // pantalla completa
     }
 
     /**
