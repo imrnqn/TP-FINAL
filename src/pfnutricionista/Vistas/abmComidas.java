@@ -11,6 +11,7 @@ import pfnutricionista.AccesoADatos.PacienteData;
 import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Horario;
 import pfnutricionista.entidades.Paciente;
+import static java.awt.GridBagConstraints.BOTH;
 
 /**
  *
@@ -23,6 +24,7 @@ public class abmComidas extends javax.swing.JInternalFrame {
      */
     public abmComidas() {
         initComponents();
+       
         
         
        

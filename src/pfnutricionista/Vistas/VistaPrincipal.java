@@ -5,6 +5,8 @@
  */
 package pfnutricionista.Vistas;
 
+import static java.awt.GridBagConstraints.BOTH;
+
 /**
  *
  * @author cdc_3
@@ -16,6 +18,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**
@@ -30,13 +33,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         principal = new javax.swing.JDesktopPane();
         jbPacientes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbMenu = new javax.swing.JButton();
+        jbDieta = new javax.swing.JButton();
+        jbCitas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,34 +59,42 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html><center>Gestion<p> NutriciOn<html>");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dieta.png"))); // NOI18N
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial.png"))); // NOI18N
-
-        jLabel2.setText("PACIENTE");
-
-        jLabel3.setText("MENU");
-
-        jLabel4.setText("DIETA");
-
-        jTextField1.setText("VISITAS");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jbMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
+        jbMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jbMenuActionPerformed(evt);
             }
         });
 
+        jbDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dieta.png"))); // NOI18N
+
+        jbCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("PACIENTE");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("MENU");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("DIETA");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("CITAS");
+
         principal.setLayer(jbPacientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
         principal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        principal.setLayer(jbMenu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        principal.setLayer(jbDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        principal.setLayer(jbCitas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         principal.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         principal.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         principal.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        principal.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
@@ -97,21 +108,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
                     .addGroup(principalLayout.createSequentialGroup()
                         .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
@@ -124,28 +135,29 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(58, 58, 58)
                         .addComponent(jLabel2)))
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jbMenu))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(29, 29, 29)))
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(jbDieta))
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4)))
+                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jbCitas))
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel5)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
 
@@ -177,9 +189,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         principal.moveToFront(pac);
     }//GEN-LAST:event_jbPacientesActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        abmComidas comida = new abmComidas();
+        principal.add(comida);
+        comida.show();
+    }//GEN-LAST:event_jbMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,14 +232,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton jbCitas;
+    private javax.swing.JButton jbDieta;
+    private javax.swing.JButton jbMenu;
     private javax.swing.JButton jbPacientes;
     private javax.swing.JDesktopPane principal;
     // End of variables declaration//GEN-END:variables
