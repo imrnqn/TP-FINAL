@@ -5,12 +5,12 @@
  */
 package pfnutricionista.Vistas;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import pfnutricionista.AccesoADatos.ComidaData;
-import pfnutricionista.AccesoADatos.PacienteData;
 import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Horario;
-import pfnutricionista.entidades.Paciente;
 
 /**
  *
@@ -54,7 +54,7 @@ public class abmComidas extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setForeground(java.awt.Color.white);
-        setIconifiable(true);
+        setIconifiable(isIconifiable());
         setMaximizable(true);
         setResizable(true);
         setTitle("Ficha de Comidas");
@@ -225,7 +225,10 @@ public class abmComidas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ public Image getIconImage() {
+    Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/circulo.png"));
+    return retValue;
+}
     private void jtDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDetalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtDetalleActionPerformed
