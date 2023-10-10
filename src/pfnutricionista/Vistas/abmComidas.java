@@ -6,19 +6,22 @@
 package pfnutricionista.Vistas;
 
 import javax.swing.JOptionPane;
+import pfnutricionista.AccesoADatos.ComidaData;
 import pfnutricionista.AccesoADatos.PacienteData;
+import pfnutricionista.entidades.Comida;
+import pfnutricionista.entidades.Horario;
 import pfnutricionista.entidades.Paciente;
 
 /**
  *
  * @author ivanm
  */
-public class abmPacientes extends javax.swing.JInternalFrame {
+public class abmComidas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form abmPacientes
      */
-    public abmPacientes() {
+    public abmComidas() {
         initComponents();
         
         
@@ -38,85 +41,66 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
-        jtApellido = new javax.swing.JTextField();
-        jtDni = new javax.swing.JTextField();
-        jtDomicilio = new javax.swing.JTextField();
-        jtTelefono = new javax.swing.JTextField();
+        jtDetalle = new javax.swing.JTextField();
+        jtCalorias = new javax.swing.JTextField();
         jbAlta = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jcbHorario = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setForeground(java.awt.Color.white);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Ficha de Pacientes");
+        setTitle("Ficha de Comidas");
         setToolTipText("");
         setDoubleBuffered(true);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel2.setText("Nombres");
+        jLabel2.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel3.setText("Apellidos");
+        jLabel3.setText("Detalle");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel4.setText("DNI");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel5.setText("Domicilio");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel6.setText("Telefono");
+        jLabel4.setText("Calorias");
 
         jtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNombreActionPerformed(evt);
+            }
+        });
         jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtNombreKeyTyped(evt);
             }
         });
 
-        jtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtApellido.addActionListener(new java.awt.event.ActionListener() {
+        jtDetalle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtApellidoActionPerformed(evt);
+                jtDetalleActionPerformed(evt);
             }
         });
-        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtDetalle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtApellidoKeyTyped(evt);
-            }
-        });
-
-        jtDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtDniKeyTyped(evt);
+                jtDetalleKeyTyped(evt);
             }
         });
 
-        jtDomicilio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtCalorias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtDomicilioKeyTyped(evt);
-            }
-        });
-
-        jtTelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtTelefonoKeyTyped(evt);
+                jtCaloriasKeyTyped(evt);
             }
         });
 
@@ -158,7 +142,18 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 153, 51));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("PACIENTE");
+        jLabel7.setText("COMIDA");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel5.setText("Horario");
+
+        jcbHorario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jcbHorario.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jcbHorarioComponentAdded(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,16 +167,20 @@ public class abmPacientes extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtNombre)
-                            .addComponent(jtApellido)
-                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDomicilio)
-                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
+                            .addComponent(jLabel5))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(189, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -189,8 +188,8 @@ public class abmPacientes extends javax.swing.JInternalFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,130 +200,119 @@ public class abmPacientes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                    .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
+
+        getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
+    private void jtDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDetalleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtApellidoActionPerformed
+    }//GEN-LAST:event_jtDetalleActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        Paciente paciente = new Paciente();
-        PacienteData pacienteData = new PacienteData();
-        if (jtDni.getText().equals("")){
+        Comida comida = new Comida();
+        ComidaData comidaData = new ComidaData();
+        if (jtCalorias.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
-            jtDni.requestFocus();
         }
-        paciente.setApellido(jtApellido.getText());
-        paciente.setNombre(jtNombre.getText());
-        paciente.setDni(Integer.parseInt(jtDni.getText()));
-        paciente.setDomicilio(jtDomicilio.getText());
-        paciente.setTelefono(jtTelefono.getText());
-        pacienteData.modificarPaciente(paciente);
+        comida.setNombre(jtNombre.getText());
+        comida.setDetalle(jtDetalle.getText());
+        comida.setHorario((String) jcbHorario.getSelectedItem());
+        comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
+        comidaData.modificarComida(comida);
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        Paciente paciente = new Paciente();
-        PacienteData pacienteData = new PacienteData();
-        if (jtDni.getText().equals("")){
+        Comida comida = new Comida();
+        ComidaData comidaData = new ComidaData();
+        if (jtCalorias.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
-            jtDni.requestFocus();
+            jtCalorias.requestFocus();
             
         } else {
-            paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
-            if (paciente==null){
-                jtApellido.setText(null); jtNombre.setText(null); jtDni.setText(null); jtDomicilio.setText(null); jtTelefono.setText(null);
+            comida = comidaData.buscarComida(jtNombre.getText());
+            if (comida==null){
+                jtDetalle.setText(null); jtNombre.setText(null); jtCalorias.setText(null); jcbHorario.setSelectedIndex(0);
                 jtNombre.requestFocus();
             } else {
-                jtApellido.setText(paciente.getApellido());
-                jtNombre.setText(paciente.getNombre());
-                jtDni.setText(Integer.toString(paciente.getDni()));
-                jtDomicilio.setText(paciente.getDomicilio());
-                jtTelefono.setText((paciente.getTelefono()));
+                jtDetalle.setText(comida.getDetalle());
+                jtNombre.setText(comida.getNombre());
+                jtCalorias.setText(Integer.toString(comida.getCantCalorias()));
+                jcbHorario.setSelectedItem(comida.getHorario());             
             }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
-        Paciente paciente = new Paciente();
-        PacienteData pacienteData = new PacienteData();
-        if (jtDni.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
+        Comida comida = new Comida();
+        ComidaData comidaData = new ComidaData();
+        if (jtCalorias.getText().equals("") && jtNombre.getText().equals("") && jtDetalle.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Error. Los campos no pueden estar vacio.");
+            jtNombre.requestFocus();
         }
-        paciente.setApellido(jtApellido.getText());
-        paciente.setNombre(jtNombre.getText());
-        paciente.setDni(Integer.parseInt(jtDni.getText()));
-        paciente.setDomicilio(jtDomicilio.getText());
-        paciente.setTelefono(jtTelefono.getText());
-        pacienteData.guardarPaciente(paciente);
+        comida.setNombre(jtNombre.getText());
+        comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
+        comida.setDetalle(jtDetalle.getText());
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        Paciente paciente = new Paciente();
-        PacienteData pacienteData = new PacienteData();
-        if (jtDni.getText().equals("")){
+        Comida comida = new Comida();
+        ComidaData comidaData = new ComidaData();
+        if (jtCalorias.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
         }
-        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
-        pacienteData.eliminarPaciente(paciente.getIdPaciente());
+        comida = comidaData.buscarComida(jtNombre.getText());
+        comidaData.eliminarComida(comida.getIdComida());
     }//GEN-LAST:event_jbBajaActionPerformed
 
-    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+    private void jtCaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCaloriasKeyTyped
         
         int key = evt.getKeyChar();
         boolean numeros = key >= 48 && key <= 57;
         if (!numeros){
             evt.consume();
         }
-        if(jtDni.getText().length() >= 8){
+        if(jtCalorias.getText().length() >= 8){
             evt.consume();
         }
-    }//GEN-LAST:event_jtDniKeyTyped
+    }//GEN-LAST:event_jtCaloriasKeyTyped
 
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
         jtNombre.setText (jtNombre.getText().toUpperCase());
     }//GEN-LAST:event_jtNombreKeyTyped
 
-    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
-        jtApellido.setText (jtApellido.getText().toUpperCase());
-    }//GEN-LAST:event_jtApellidoKeyTyped
+    private void jtDetalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDetalleKeyTyped
+        jtDetalle.setText (jtDetalle.getText().toUpperCase());
+    }//GEN-LAST:event_jtDetalleKeyTyped
 
-    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
-        int key = evt.getKeyChar();
-        boolean numeros = key >= 48 && key <= 57 || key == 45;
-        if (!numeros){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtTelefonoKeyTyped
+    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNombreActionPerformed
 
-    private void jtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDomicilioKeyTyped
-        jtDomicilio.setText (jtDomicilio.getText().toUpperCase());
-    }//GEN-LAST:event_jtDomicilioKeyTyped
+    private void jcbHorarioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jcbHorarioComponentAdded
+       Horario.values();
+    }//GEN-LAST:event_jcbHorarioComponentAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -332,16 +320,14 @@ public class abmPacientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbModificar;
-    private javax.swing.JTextField jtApellido;
-    private javax.swing.JTextField jtDni;
-    private javax.swing.JTextField jtDomicilio;
+    private javax.swing.JComboBox<String> jcbHorario;
+    private javax.swing.JTextField jtCalorias;
+    private javax.swing.JTextField jtDetalle;
     private javax.swing.JTextField jtNombre;
-    private javax.swing.JTextField jtTelefono;
     // End of variables declaration//GEN-END:variables
 }

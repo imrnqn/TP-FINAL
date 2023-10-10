@@ -60,9 +60,10 @@ public class PacienteData {
 //ok
     public void modificarPaciente(Paciente paciente) {
         PacienteData pacienteData = new PacienteData();
+        Paciente pacienteId = new Paciente();
         String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?  WHERE idPaciente = ?";
         PreparedStatement ps;
-        paciente = pacienteData.buscarPaciente(paciente.getApellido() , paciente.getNombre(), paciente.getDni());
+        pacienteId = pacienteData.buscarPaciente(paciente.getApellido() , paciente.getNombre(), paciente.getDni());
         try {
             ps = conexion.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
@@ -70,7 +71,7 @@ public class PacienteData {
             ps.setInt(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5,paciente.getTelefono());
-            ps.setInt(6, paciente.getIdPaciente());
+            ps.setInt(6, pacienteId.getIdPaciente());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Los datos del paciente furon modiificados exitosamente.");
@@ -103,14 +104,13 @@ public class PacienteData {
 
 //ok
     public Paciente buscarPaciente(String apellido, String nombre, int dni){
-        Paciente paciente = null;
+        Paciente paciente = new Paciente();
         apellido = apellido+"%";
         nombre = nombre+"%";
         
         String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
                 + "WHERE ((apellido LIKE ? OR nombre LIKE ?) AND dni LIKE ? AND estado = true)";
         
-        //SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente WHERE (apellido LIKE 'H%' OR nombre LIKE ' %') AND dni LIKE 3% AND estado = true 
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -121,7 +121,6 @@ public class PacienteData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                paciente = new Paciente();
                 paciente.setIdPaciente(rs.getInt("idpaciente"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setNombre(rs.getString("nombre"));
@@ -129,13 +128,12 @@ public class PacienteData {
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setEstado(true);
-                
             } else {
                 JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pacientes.");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente.");
         }
     return paciente;
     }
