@@ -18,7 +18,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
+        
         this.setExtendedState(this.MAXIMIZED_BOTH); // pantalla completa
+        
+        
     }
 
     /**
@@ -42,8 +45,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1200, 1200));
+        setPreferredSize(new java.awt.Dimension(1200, 1200));
 
-        principal.setPreferredSize(new java.awt.Dimension(700, 600));
+        principal.setMaximumSize(new java.awt.Dimension(147483647, 147483647));
+        principal.setPreferredSize(new java.awt.Dimension(147483647, 147483647));
 
         jbPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add_contact_twitter_user_icon_127131.png"))); // NOI18N
         jbPacientes.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -100,42 +106,43 @@ public class VistaPrincipal extends javax.swing.JFrame {
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
             .addGroup(principalLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jbCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5))
+                        .addGap(24, 24, 24)
+                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addComponent(jbCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addComponent(jbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3))
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2))))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(600, 600, 600)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(principalLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(142, 142, 142)
                         .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
                         .addComponent(jLabel2)))
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
@@ -166,14 +173,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
