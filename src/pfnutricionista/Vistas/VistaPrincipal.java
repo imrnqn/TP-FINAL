@@ -128,7 +128,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2))))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(600, 600, 600)
+                        .addGap(500, 500, 500)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23555, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
@@ -142,7 +142,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel2)))
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
