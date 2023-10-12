@@ -5,13 +5,14 @@
  */
 package pfnutricionista.Vistas;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import pfnutricionista.AccesoADatos.ComidaData;
+import pfnutricionista.AccesoADatos.DietaData;
 import pfnutricionista.AccesoADatos.PacienteData;
-import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Horario;
 import pfnutricionista.entidades.Paciente;
-import static java.awt.GridBagConstraints.BOTH;
+import pfnutricionista.entidades.Dieta;
 
 /**
  *
@@ -24,7 +25,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
      */
     public abmDietas() {
         initComponents();
-        llenarJcbHorario();
+        
         
         
        
@@ -52,8 +53,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jtPaciente = new javax.swing.JTextField();
         jtFechaInicial = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
         jtFechaFinal = new javax.swing.JTextField();
+        jtPesoInicial = new javax.swing.JTextField();
         jtPesoFinal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -136,10 +137,15 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jLabel5.setText("Fecha de Inicio");
 
         jtPaciente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtPacienteActionPerformed(evt);
+            }
+        });
 
         jtFechaInicial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtFechaFinal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jtPesoFinal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -169,20 +175,18 @@ public class abmDietas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(26, 26, 26)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtFechaFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtPesoFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +199,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                         .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addGap(62, 62, 62))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,22 +217,22 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("");
@@ -237,54 +241,51 @@ public class abmDietas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        Comida comida = new Comida();
-        ComidaData comidaData = new ComidaData();
+        Dieta dieta = new Dieta();
+        DietaData dietaData = new DietaData();
         if (jtNombre.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo Nombre no puede estar vacio.");
             jtNombre.requestFocus();
-        }else{
-            if (jtCalorias.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Error. El campo Calorias no puede estar vacio.");
-                jtCalorias.requestFocus();
-            } else {
-               if (jcbHorario.getSelectedItem().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error. El campo Horario no puede estar vacio.");
-                    jcbHorario.requestFocus();
-               } else {
-                    comida.setNombre(jtNombre.getText());
-                    comida.setDetalle(jtaDetalle.getText());
-                    comida.setHorario((String) jcbHorario.getSelectedItem());
-                    comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
-                    comidaData.modificarComida(comida);
-                    jtaDetalle.setText(null); jtNombre.setText(null); jtCalorias.setText(null); jcbHorario.setSelectedIndex(-1);
-                }
-            }
+        } else {
+                    dieta.setNombre(jtNombre.getText());
+                    //dieta.setPacinte(jtaDetalle.getText());
+                    dieta.setFechaInicial(LocalDate.parse(jtFechaInicial.getText()));
+                    dieta.setFechaFinal(LocalDate.parse(jtFechaFinal.getText()));
+                    dieta.setPesoInicial(Double.valueOf(jtPesoInicial.getText()));
+                    dieta.setPesoFinal(Double.valueOf(jtPesoFinal.getText()));
+                    dietaData.modificarDieta(dieta);
+                    jtNombre.setText(null); jtPaciente.setText(null); jtFechaInicial.setText(null); 
+                    jtFechaFinal.setText(null); jtPesoInicial.setText(null); jtPesoFinal.setText(null);
+                    jtNombre.requestFocus();
         }
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        Comida comida = new Comida();
-        ComidaData comidaData = new ComidaData();
+        Dieta dieta = new Dieta();
+        DietaData dietaData = new DietaData();
         if (jtNombre.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Error. Ingrese el nombre de una comida.");
+            JOptionPane.showMessageDialog(null, "Error. Ingrese el nombre de una dieta.");
             jtNombre.requestFocus();
         } else {
-            comida = comidaData.buscarComida(jtNombre.getText());
-            if (comida==null){
-                jtaDetalle.setText(null); jtNombre.setText(null); jtCalorias.setText(" "); jcbHorario.setSelectedIndex(-1);
+            dieta = dietaData.buscarDieta(jtNombre.getText());
+            if (dieta==null){
+                jtNombre.setText(null); jtPaciente.setText(null); jtFechaInicial.setText(null); 
+                jtFechaFinal.setText(null); jtPesoInicial.setText(null); jtPesoFinal.setText(null);
                 jtNombre.requestFocus();
             } else {
-                jtaDetalle.setText(comida.getDetalle());
-                jtNombre.setText(comida.getNombre());
-                jtCalorias.setText(Integer.toString(comida.getCantCalorias()));
-                jcbHorario.setSelectedItem(comida.getHorario());             
+                jtNombre.setText(dieta.getNombre());
+                jtPaciente .setText;
+                jtFechaInicial.setText(String.valueOf(dieta.getFechaInicial()));
+                jtFechaFinal.setText(String.valueOf(dieta.getPesoFinal()));
+                jtPesoInicial.setText(Double.toString(dieta.getPesoInicial()));
+                jtPesoFinal.setText(Double.toString(dieta.getPesoFinal()));
             }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
-        Comida comida = new Comida();
-        ComidaData comidaData = new ComidaData();
+        Dieta dieta = new Dieta();
+        DietaData dietaData = new DietaData();
         if (jtCalorias.getText().equals("") && jtNombre.getText().equals("") && jtaDetalle.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. Los campos no pueden estar vacio.");
             jtNombre.requestFocus();
@@ -300,33 +301,31 @@ public class abmDietas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        Comida comida = new Comida();
-        ComidaData comidaData = new ComidaData();
+        Dieta dieta = new Dieta();
+        DietaData dietaData = new DietaData();
         if (jtNombre.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo Nombre no puede estar vacio.");
             jtNombre.requestFocus();
         } else {
-            comida = comidaData.buscarComida(jtNombre.getText());
-            comidaData.eliminarComida(comida.getIdComida());
-            jtaDetalle.setText(null); jtNombre.setText(null); jtCalorias.setText(null); jcbHorario.setSelectedIndex(-1);
+            dieta = dietaData.buscarDieta(jtNombre.getText());
+            dietaData.eliminarDieta(dieta.getIdDieta());
+            jtNombre.setText(null); jtPaciente.setText(null); jtFechaInicial.setText(null); jtFechaFinal.setText(null); 
+            jtPesoInicial.setText(null); jtPesoFinal.setText(null);
         }
     }//GEN-LAST:event_jbBajaActionPerformed
 
-    private void llenarJcbHorario(){
-        for (Horario r :Horario.values()) {
-            jcbHorario.addItem(r.toString());
-            jcbHorario.setSelectedIndex(-1);
-        }
-    }    
-    
     
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
         jtNombre.setText (jtNombre.getText().toUpperCase());
     }//GEN-LAST:event_jtNombreKeyTyped
 
     private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jtNombreActionPerformed
+
+    private void jtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPacienteActionPerformed
+        jtPaciente.setText (jtPaciente.getText().toUpperCase());
+    }//GEN-LAST:event_jtPacienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -337,7 +336,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JButton jbBuscar;
@@ -347,5 +345,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtPaciente;
     private javax.swing.JTextField jtPesoFinal;
+    private javax.swing.JTextField jtPesoInicial;
     // End of variables declaration//GEN-END:variables
 }
