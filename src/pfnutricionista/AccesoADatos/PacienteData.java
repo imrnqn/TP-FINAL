@@ -137,5 +137,36 @@ public class PacienteData {
         }
     return paciente;
     }
+    
+    public Paciente buscarPaciente(int idPaciente){
+        Paciente paciente = new Paciente();
+                
+        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
+                + "WHERE ((idPaciente = ? AND estado = true)";
+        
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idPaciente);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                paciente.setIdPaciente(rs.getInt("idpaciente"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setEstado(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente.");
+        }
+    return paciente;
+    }
 
 }

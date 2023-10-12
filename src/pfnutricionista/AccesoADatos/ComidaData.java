@@ -26,15 +26,16 @@ public class ComidaData {
     }
 
     public void guardarComida (Comida comida){
-        String sql = "INSERT INTO comida (nombre, canCalorias, detalle, estado )"
-                + " VALUES ( ?, ?, ?, ?)";
+        String sql = "INSERT INTO comida (nombre, cantCalorias, detalle, horario, estado)"
+                + " VALUES ( ?, ?, ?, ?, ?)";
         PreparedStatement ps;
         try {          
                 ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, comida.getNombre());
                 ps.setInt(2, comida.getCantCalorias());
                 ps.setString(3, comida.getDetalle());
-                ps.setBoolean(4, true);
+                ps.setString(4, comida.getHorario());
+                ps.setBoolean(5, true);
                 int exito = ps.executeUpdate();
                 if (exito == 1) {
                     JOptionPane.showMessageDialog(null, "Comida añadida con exito.");
@@ -52,8 +53,8 @@ public class ComidaData {
     public Comida buscarComida(String nombre){
         Comida comida = new Comida();
         nombre = nombre+"%";
-        String sql = "SELECT idComida, nombre, detalle, cantCalorias, FROM comida "
-                + "WHERE ((nombre LIKE ?";
+        String sql = "SELECT idComida, nombre, detalle, horario, cantCalorias FROM comida "
+                + "WHERE nombre LIKE ? AND estado=true";
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
@@ -66,6 +67,7 @@ public class ComidaData {
                 comida.setIdComida(rs.getInt("idComida"));
                 comida.setNombre(rs.getString("nombre"));
                 comida.setDetalle(rs.getString("detalle"));
+                comida.setHorario(rs.getString("horario"));
                 comida.setCantCalorias(rs.getInt("cantCalorias"));
                 comida.setEstado(true);
                 
@@ -82,7 +84,7 @@ public class ComidaData {
     public void modificarComida(Comida comida) {
         ComidaData comidaData = new ComidaData();
         Comida comidaId = new Comida();
-        String sql = "UPDATE comida SET nombre = ?, cantCalorias = ?, detalle = ? WHERE idComida = ?";
+        String sql = "UPDATE comida SET nombre = ?, cantCalorias = ?, detalle = ?, horario = ? WHERE idComida = ?";
         PreparedStatement ps;
         comidaId = comidaData.buscarComida(comida.getNombre());
         try {
@@ -90,7 +92,8 @@ public class ComidaData {
             ps.setString(1, comida.getNombre());
             ps.setInt(2, comida.getCantCalorias());
             ps.setString(3, comida.getDetalle());
-            ps.setInt(4, comidaId.getIdComida());
+            ps.setString(4, comida.getHorario());
+            ps.setInt(5, comidaId.getIdComida());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Los datos de la comida furon modiificados exitosamente.");
