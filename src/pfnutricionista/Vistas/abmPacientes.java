@@ -59,6 +59,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         setTitle("Ficha de Pacientes");
         setToolTipText("");
         setDoubleBuffered(true);
+        setMaximumSize(new java.awt.Dimension(600, 700));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 0));
