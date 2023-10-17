@@ -194,6 +194,9 @@
               <Image iconType="3" name="/imagenes/dieta.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDietaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCitas">
           <Properties>
