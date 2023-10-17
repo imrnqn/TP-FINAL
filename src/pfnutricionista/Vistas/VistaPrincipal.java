@@ -73,6 +73,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         jbDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dieta.png"))); // NOI18N
+        jbDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDietaActionPerformed(evt);
+            }
+        });
 
         jbCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial.png"))); // NOI18N
 
@@ -207,6 +212,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         principal.add(comida);
         comida.show();
     }//GEN-LAST:event_jbMenuActionPerformed
+
+    private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
+        // TODO add your handling code here:
+        abmDietas dieta = new abmDietas();
+        principal.add(dieta);
+        dieta.show();
+    }//GEN-LAST:event_jbDietaActionPerformed
 
     /**
      * @param args the command line arguments
