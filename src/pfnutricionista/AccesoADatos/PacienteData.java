@@ -63,7 +63,7 @@ public class PacienteData {
         Paciente pacienteId = new Paciente();
         String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?  WHERE idPaciente = ?";
         PreparedStatement ps;
-        pacienteId = pacienteData.buscarPaciente(paciente.getApellido() , paciente.getNombre(), paciente.getDni());
+        pacienteId = pacienteData.buscarPaciente(paciente.getDni());
         try {
             ps = conexion.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
@@ -103,21 +103,16 @@ public class PacienteData {
 
 
 //ok
-    public Paciente buscarPaciente(String apellido, String nombre, int dni){
+    public Paciente buscarPaciente(int dni){
         Paciente paciente = new Paciente();
-        apellido = apellido+"%";
-        nombre = nombre+"%";
         
         String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
-                + "WHERE ((apellido LIKE ? OR nombre LIKE ?) AND dni LIKE ? AND estado = true)";
+                + "WHERE dni = ? AND estado = true";
         
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setString(1, apellido);
-            ps.setString(2, nombre);
-            ps.setInt(3, dni);
-
+            ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -138,16 +133,19 @@ public class PacienteData {
     return paciente;
     }
     
-    public Paciente buscarPaciente(int idPaciente){
+    public Paciente buscarPaciente(String apellido, String nombre){
         Paciente paciente = new Paciente();
-                
+        apellido = apellido+"%";
+        nombre = nombre+"%";
+        
         String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
-                + "WHERE ((idPaciente = ? AND estado = true)";
+                + "WHERE ((apellido LIKE ? OR nombre LIKE ?) AND estado = true)";
         
         PreparedStatement ps;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idPaciente);
+            ps.setString(1, apellido);
+            ps.setString(2, nombre);
             
             ResultSet rs = ps.executeQuery();
 
@@ -168,5 +166,36 @@ public class PacienteData {
         }
     return paciente;
     }
+    
+//    public Paciente buscarPaciente(int idPac){
+//        Paciente paciente = new Paciente();
+//                
+//        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
+//                + "WHERE ((idPaciente = ? AND estado = true)";
+//        
+//        PreparedStatement ps;
+//        try {
+//            ps = conexion.prepareStatement(sql);
+//            ps.setInt(1, idPac);
+//            
+//            ResultSet rs = ps.executeQuery();
+//
+//            if (rs.next()) {
+//                paciente.setIdPaciente(rs.getInt("idpaciente"));
+//                paciente.setApellido(rs.getString("apellido"));
+//                paciente.setNombre(rs.getString("nombre"));
+//                paciente.setDni(rs.getInt("dni"));
+//                paciente.setDomicilio(rs.getString("domicilio"));
+//                paciente.setTelefono(rs.getString("telefono"));
+//                paciente.setEstado(true);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
+//            }
+//            ps.close();
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente.");
+//        }
+//    return paciente;
+//    }
 
 }

@@ -256,7 +256,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
             jtDni.requestFocus();
             
         } else {
-            paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+            paciente = pacienteData.buscarPaciente(Integer.parseInt(jtDni.getText()));
             if (paciente==null){
                 jtApellido.setText(null); jtNombre.setText(null); jtDni.setText(null); jtDomicilio.setText(null); jtTelefono.setText(null);
                 jtNombre.requestFocus();
@@ -290,7 +290,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         if (jtDni.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
         }
-        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+        paciente = pacienteData.buscarPaciente(Integer.parseInt(jtDni.getText()));
         pacienteData.eliminarPaciente(paciente.getIdPaciente());
     }//GEN-LAST:event_jbBajaActionPerformed
 

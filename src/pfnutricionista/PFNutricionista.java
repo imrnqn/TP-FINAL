@@ -44,7 +44,7 @@ public class PFNutricionista {
         //pacienteData1.guardarPaciente(paciente2);
         //pacienteData1.modificarPaciente(paciente2);
         //pacienteData1.eliminarPaciente(4);
-        System.out.println(pacienteData1.buscarPaciente("P","",0));
+        //System.out.println(pacienteData1.buscarPaciente("P","",0));
         
         
         System.out.println("fin 2");
