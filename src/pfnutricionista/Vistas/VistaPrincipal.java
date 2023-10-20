@@ -193,7 +193,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
         // TODO add your handling code here:
-        /*principal.removeAll();
+        /*principal.removeAll();/
         principal.repaint();
         abmPacientes pac = new abmPacientes();
         pac.setVisible(true);
