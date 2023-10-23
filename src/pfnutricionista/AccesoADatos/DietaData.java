@@ -61,6 +61,7 @@ public class DietaData {
         Paciente paciente;
         PacienteData pacienteData = new PacienteData();
         nombre = nombre+"%";
+        System.out.println(nombre);
         String sql = "SELECT idDieta, nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal"
                 + " FROM dieta WHERE nombre LIKE ? AND estado = true";
         PreparedStatement ps;
@@ -68,17 +69,16 @@ public class DietaData {
             ps = conexion.prepareStatement(sql);
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
-                paciente = pacienteData.buscarPaciente(rs.getInt("idPaciente"));
+                System.out.println(rs.getInt("idPaciente"));
+                paciente = pacienteData.buscarPacientXid(rs.getInt("idPaciente"));
                 dieta.setIdDieta(rs.getInt("idDieta"));
                 dieta.setNombre(rs.getString("nombre"));
                 dieta.setPaciente(paciente);
-                dieta.setFechaInicial((LocalDate) rs.getObject("fechaInicial"));
+                dieta.setFechaInicial((LocalDate) rs.getDate("fechaInicial").toLocalDate());
                 dieta.setPesoInicial(rs.getDouble("pesoInicial"));
                 dieta.setPesoFinal(rs.getDouble("pesoFianl"));
-                dieta.setFechaFinal((LocalDate) rs.getObject("fechaFinal"));
-                
+                dieta.setFechaFinal((LocalDate) rs.getDate("fechaFinal").toLocalDate());
                 dieta.setEstado(true);
                 
             } else {
@@ -88,6 +88,7 @@ public class DietaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Dieta.");
         }
+        System.out.println(dieta);
         return dieta;
     }
      

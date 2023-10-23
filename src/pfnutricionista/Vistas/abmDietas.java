@@ -10,8 +10,10 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import pfnutricionista.AccesoADatos.DietaData;
 import pfnutricionista.AccesoADatos.PacienteData;
 import pfnutricionista.entidades.Paciente;
@@ -28,9 +30,12 @@ public class abmDietas extends javax.swing.JInternalFrame {
     /**
      * Creates new form abmPacientes
      */
+    private DefaultTableModel modelo = new DefaultTableModel();
+    
     public abmDietas() {
         initComponents();
-
+        modelo = new DefaultTableModel();
+        armarCabeceraTabla();
     }
 
     /**
@@ -70,7 +75,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         Apellido1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTComidas = new javax.swing.JTable();
+        jtComidas = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,7 +261,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
         jLabel10.setText("Comidas del plan:");
 
-        jTComidas.setModel(new javax.swing.table.DefaultTableModel(
+        jtComidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -267,7 +272,16 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTComidas);
+        jtComidas.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jtComidasAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(jtComidas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -416,9 +430,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DecimalFormat formatoPDec = new DecimalFormat("#,##0.00");
-    //MaskFormatter formatter = new MaskFormatter("(###) ###-####");
-    //JFormattedTextField jTextField1 = new JFormattedTextField(formatoPDec);
+    DecimalFormat formatoPDec = new DecimalFormat("###.##");
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         Dieta dieta = new Dieta();
@@ -495,7 +507,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 fFinal = (Date.valueOf(jdchFechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).format(dtf))).toLocalDate();
                 dieta.setFechaFinal(fFinal);
             }
-            pInicial = Double.parseDouble(jftPesoInicial.getText());
+            pInicial = Double.parseDouble(formatoPDec.format(Double.parseDouble(jftPesoInicial.getText())));
+            System.out.println(pInicial);
             dieta.setPesoInicial(pInicial);
             //System.out.println(jftPesoFinal.getText()+" +++");
             if (jftPesoFinal.getSelectedText() != null) {
@@ -508,8 +521,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
             jtPacNombre.setText("");
             jdchFechaInicial.setDateFormatString("");
             jdchFechaFinal.setDateFormatString("");
-            jftPesoInicial.getText();
-            jftPesoFinal.getText();
+            jftPesoInicial.setText("");
+            jftPesoFinal.setText("");
             jtNombre.requestFocus();
         }
 
@@ -607,6 +620,10 @@ public class abmDietas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jftPesoFinalKeyTyped
 
+    private void jtComidasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtComidasAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtComidasAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Apellido;
@@ -623,7 +640,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTComidas;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
@@ -634,9 +650,33 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jdchFechaInicial;
     private javax.swing.JFormattedTextField jftPesoFinal;
     private javax.swing.JFormattedTextField jftPesoInicial;
+    private javax.swing.JTable jtComidas;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtPacApellido;
     private javax.swing.JTextField jtPacDNI;
     private javax.swing.JTextField jtPacNombre;
     // End of variables declaration//GEN-END:variables
+
+private void armarCabeceraTabla(){
+        ArrayList<Object> filaCabecera = new ArrayList();
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Detalle");
+        filaCabecera.add("Horario");
+        filaCabecera.add("CantCalorias");
+        for (Object it: filaCabecera){
+            modelo.addColumn(it);
+        }
+        jtComidas.setModel(modelo);
 }
+private void borrarFilaTabla(){
+    int indice = modelo.getRowCount() -1;
+    for (int i = indice; i>=0; i--){
+        modelo.removeRow(i);
+    }
+}
+private void cargarDatosTabla(){
+    DietaComida selec = (DietaComida).getSectedItem();
+    
+}
+}
+
