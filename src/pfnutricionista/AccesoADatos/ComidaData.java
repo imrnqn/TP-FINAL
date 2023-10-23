@@ -81,13 +81,46 @@ public class ComidaData {
         return comida;
     }
     
+    public Comida buscarComida(int idComida){
+        Comida comida = new Comida();
+        String sql = "SELECT idComida, nombre, detalle, horario, cantCalorias FROM comida "
+                + "WHERE idComida=?  AND estado=true";
+        
+        PreparedStatement ps;
+        try {
+            
+            ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idComida);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                
+                comida.setIdComida(rs.getInt("idComida"));
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setHorario(rs.getString("horario"));
+                comida.setCantCalorias(rs.getInt("cantCalorias"));
+                comida.setEstado(true);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Error. La comida no existe.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Comida.");
+        }
+        return comida;
+    }
+    
     public void modificarComida(Comida comida) {
         ComidaData comidaData = new ComidaData();
         Comida comidaId = new Comida();
         String sql = "UPDATE comida SET nombre = ?, cantCalorias = ?, detalle = ?, horario = ? WHERE idComida = ?";
-        PreparedStatement ps;
+        
         comidaId = comidaData.buscarComida(comida.getNombre());
         try {
+            PreparedStatement ps;
             ps = conexion.prepareStatement(sql);
             ps.setString(1, comida.getNombre());
             ps.setInt(2, comida.getCantCalorias());

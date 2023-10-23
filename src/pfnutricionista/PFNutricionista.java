@@ -7,8 +7,10 @@ package pfnutricionista;
 
 
 import java.time.LocalDate;
+import pfnutricionista.AccesoADatos.ComidaData;
 import pfnutricionista.AccesoADatos.Conexion;
 import pfnutricionista.AccesoADatos.DietaComidaData;
+import pfnutricionista.AccesoADatos.DietaData;
 import pfnutricionista.AccesoADatos.PacienteData;
 import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Dieta;
@@ -39,12 +41,18 @@ public class PFNutricionista {
         //DietaComidaData dietaComidaData1 = new DietaComidaData();
         //dietaComidaData1.guardarDietaComida(dieta1, comida1);
         
-        PacienteData pacienteData1 = new PacienteData();
+        //PacienteData pacienteData1 = new PacienteData();
         
         //pacienteData1.guardarPaciente(paciente2);
         //pacienteData1.modificarPaciente(paciente2);
         //pacienteData1.eliminarPaciente(4);
         System.out.println(pacienteData1.buscarPaciente("P","",0));
+        
+        DietaComidaData dcData = new DietaComidaData();
+        DietaData dData = new DietaData();
+        Dieta dieta;
+        dieta=dData.buscarDieta("Dieta baja en calorias");
+        dcData.listarDietaComida(dieta);
         
         
         System.out.println("fin 2");
