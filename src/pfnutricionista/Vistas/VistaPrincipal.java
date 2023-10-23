@@ -45,11 +45,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 1000));
-        setPreferredSize(new java.awt.Dimension(600, 1000));
+        setMaximumSize(new java.awt.Dimension(700, 900));
+        setPreferredSize(new java.awt.Dimension(700, 900));
 
-        principal.setMaximumSize(new java.awt.Dimension(600, 1000));
-        principal.setPreferredSize(new java.awt.Dimension(600, 1000));
+        principal.setMaximumSize(new java.awt.Dimension(600, 700));
+        principal.setPreferredSize(new java.awt.Dimension(600, 700));
 
         jbPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add_contact_twitter_user_icon_127131.png"))); // NOI18N
         jbPacientes.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -169,7 +169,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jLabel5)))
-                .addContainerGap(557, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
