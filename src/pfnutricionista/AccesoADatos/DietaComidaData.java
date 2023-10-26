@@ -96,6 +96,33 @@ public class DietaComidaData {
         return dComidas;
     }
     
+//    public ArrayList<DietaComida> listarComida(Dieta dieta) {
+//        ArrayList<Comida> dComidas = new ArrayList<>();
+//        ComidaData dComida = new ComidaData();
+//        Comida comida = new Comida();
+//        String sql = "SELECT comida.idComida FROM dietaComida, comida "
+//                + "WHERE idDieta = ? AND estado = 1 AND dietaComida.idComida!=comida.idcomida";
+//        PreparedStatement ps;
+//        try {
+//            
+//            ps = conexion.prepareStatement(sql);
+//            ps.setInt(1, dieta.getIdDieta());
+//            ResultSet rs=ps.executeQuery();
+//            // ps.getGeneratedKeys();
+//            while (rs.next()) {
+//                comida = dComidas.buscarComida((rs.getInt("comida.idcomida");
+//                dietaComida.setDieta(dieta);
+//                dietaComida.setComida(cData.buscarComida(rs.getInt("idComida")));
+//                dComidas.add(dietaComida);
+//                System.out.println(dietaComida);
+//            }
+//                ps.close();
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla DietaComida.");
+//        }
+//        return dComidas;
+//    }
+//    
     
     
 //        public void finalizarDieta(int idDieta) {

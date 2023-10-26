@@ -19,7 +19,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public VistaPrincipal() {
         initComponents();
         
-        //this.setExtendedState(this.MAXIMIZED_BOTH); // pantalla completa
+        this.setExtendedState(this.MAXIMIZED_BOTH); // pantalla completa
         
         
     }
@@ -45,11 +45,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 900));
-        setPreferredSize(new java.awt.Dimension(700, 900));
+        setMaximumSize(new java.awt.Dimension(1200, 1200));
+        setPreferredSize(new java.awt.Dimension(1200, 1200));
 
-        principal.setMaximumSize(new java.awt.Dimension(600, 700));
-        principal.setPreferredSize(new java.awt.Dimension(600, 700));
+        principal.setMaximumSize(new java.awt.Dimension(147483647, 147483647));
+        principal.setPreferredSize(new java.awt.Dimension(147483647, 147483647));
 
         jbPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add_contact_twitter_user_icon_127131.png"))); // NOI18N
         jbPacientes.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -81,19 +81,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jbCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PACIENTE");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MENU");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("DIETA");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CITAS");
 
@@ -133,20 +133,21 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2))))
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jLabel1)))
-                .addContainerGap(365, Short.MAX_VALUE))
+                        .addGap(600, 600, 600)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(principalLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(5, 5, 5)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(142, 142, 142)
+                        .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
                         .addComponent(jLabel2)))
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalLayout.createSequentialGroup()
@@ -169,7 +170,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jLabel5)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,14 +179,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,7 +194,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
         // TODO add your handling code here:
-        /*principal.removeAll();/
+        /*principal.removeAll();
         principal.repaint();
         abmPacientes pac = new abmPacientes();
         pac.setVisible(true);

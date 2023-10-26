@@ -59,7 +59,6 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         setTitle("Ficha de Pacientes");
         setToolTipText("");
         setDoubleBuffered(true);
-        setMaximumSize(new java.awt.Dimension(600, 700));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 0));
@@ -257,7 +256,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
             jtDni.requestFocus();
             
         } else {
-            paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+            paciente = pacienteData.buscarPaciente(Integer.parseInt(jtDni.getText()));
             if (paciente==null){
                 jtApellido.setText(null); jtNombre.setText(null); jtDni.setText(null); jtDomicilio.setText(null); jtTelefono.setText(null);
                 jtNombre.requestFocus();
@@ -291,7 +290,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         if (jtDni.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
         }
-        paciente = pacienteData.buscarPaciente(jtApellido.getText(), jtNombre.getText(),Integer.parseInt(jtDni.getText()));
+        paciente = pacienteData.buscarPaciente(Integer.parseInt(jtDni.getText()));
         pacienteData.eliminarPaciente(paciente.getIdPaciente());
     }//GEN-LAST:event_jbBajaActionPerformed
 
