@@ -51,9 +51,10 @@ public class PFNutricionista {
         DietaComidaData dcData = new DietaComidaData();
         DietaData dData = new DietaData();
         Dieta dieta;
-        dieta=dData.buscarDieta("Dieta baja en calorias");
+        dieta=dData.buscarDieta(33859634);
         dcData.listarDietaComida(dieta);
-        
+        System.out.println(" ------------------------------------------- ");
+        dcData.listarComida(dieta);
         
         System.out.println("fin 2");
     }
