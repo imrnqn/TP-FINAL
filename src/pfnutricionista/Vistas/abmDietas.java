@@ -21,6 +21,10 @@ import pfnutricionista.entidades.Dieta;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import pfnutricionista.AccesoADatos.DietaComidaData;
+<<<<<<< HEAD
+=======
+import pfnutricionista.entidades.Comida;
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
 import pfnutricionista.entidades.DietaComida;
 
 /**
@@ -33,10 +37,12 @@ public class abmDietas extends javax.swing.JInternalFrame {
      * Creates new form abmPacientes
      */
     private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo1 = new DefaultTableModel();
     
     public abmDietas() {
         initComponents();
         modelo = new DefaultTableModel();
+        modelo1 = new DefaultTableModel();
         armarCabeceraTabla();
     }
 
@@ -56,7 +62,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
         jbAlta = new javax.swing.JButton();
-        jbBuscar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -142,6 +147,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }
         });
 
+<<<<<<< HEAD
         jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbBuscar.setForeground(new java.awt.Color(51, 153, 0));
         jbBuscar.setText("Buscar");
@@ -151,6 +157,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }
         });
 
+=======
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
         jbModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbModificar.setForeground(new java.awt.Color(51, 153, 0));
         jbModificar.setText("Modificar");
@@ -280,6 +288,10 @@ public class abmDietas extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+<<<<<<< HEAD
+=======
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
         jLabel10.setText("PLAN DE COMIDAS:");
 
         jtComidasPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -361,6 +373,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -435,6 +448,89 @@ public class abmDietas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel10)))
+=======
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(281, 281, 281))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(799, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(221, 221, 221))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(405, 405, 405))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addGap(179, 179, 179)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(348, 348, 348))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Apellido))
+                                .addGap(236, 236, 236)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jbBucarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jdchFechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jdchFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jftPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jftPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtPacNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtPacApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtPacDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(351, 351, 351)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(196, 196, 196)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel10)))))
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
@@ -461,6 +557,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
+<<<<<<< HEAD
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
@@ -516,6 +613,57 @@ public class abmDietas extends javax.swing.JInternalFrame {
                                             .addComponent(jftPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(7, 7, 7))
                             .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jtPacDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Apellido1))
+                            .addComponent(jbBucarPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtPacApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5))
+                            .addComponent(Apellido))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtPacNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jdchFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jftPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(7, 7, 7)
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
@@ -523,10 +671,17 @@ public class abmDietas extends javax.swing.JInternalFrame {
                                     .addComponent(jdchFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8)))
+<<<<<<< HEAD
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jftPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+=======
+                            .addComponent(jftPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel10)
+                        .addGap(26, 26, 26)))
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -539,7 +694,11 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addContainerGap(208, Short.MAX_VALUE))
+=======
+                .addGap(207, 207, 207))
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
         );
 
         getAccessibleContext().setAccessibleName("");
@@ -573,6 +732,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbModificarActionPerformed
 
+<<<<<<< HEAD
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         Dieta dieta;
         Paciente paciente;
@@ -603,6 +763,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
+=======
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         Dieta dieta = new Dieta();
         DietaData dietaData = new DietaData();
@@ -613,7 +775,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         String pInicialString, pFinalString;
         
         if (jtNombre.getText().equals("") || jtPacDNI.getText().equals("") || jtPacApellido.getText().equals("")
-                || jtPacNombre.getText().equals("") || jdchFechaInicial.getDate().equals(null) || jftPesoInicial.getText().equals(null)) {
+                || jtPacNombre.getText().equals("") || jdchFechaInicial.getDate() == null || jftPesoInicial.getText() == null) {
             JOptionPane.showMessageDialog(null, "Error. Los campos no pueden estar vacio.");
             jtPacDNI.requestFocus();
         } else {
@@ -702,11 +864,20 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 if (dieta.getFechaFinal()!=null){
                     jdchFechaFinal.setDate(Date.valueOf(dieta.getFechaFinal()));
                 }
+<<<<<<< HEAD
                 jftPesoInicial.setText(Double.toString(dieta.getPesoInicial()));
                 if (dieta.getPesoFinal()!= 0){
                     jftPesoFinal.setText(Double.toString(dieta.getPesoFinal()));
                 }
                 cargarTablaComidasDieta(dieta);
+=======
+                jftPesoInicial.setText(Double.toString(dieta.getPesoInicial()).replace('.' , ','));
+                if (dieta.getPesoFinal()!= 0){
+                    jftPesoFinal.setText(Double.toString(dieta.getPesoFinal()).replace('.' , ','));
+                }
+                cargarTablasComidas(1);
+                cargarTablasComidas(2);
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
             }
         } else {
             jtPacDNI.setText("");
@@ -768,7 +939,19 @@ public class abmDietas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtComidasDisponiblesAncestorAdded
 
     private void jbQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbQuitarActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
+=======
+        DietaComidaData dietaComidaData = new DietaComidaData();
+        DietaData dietaData = new DietaData();
+        Dieta dieta = new Dieta();
+        int idComida = borrarFilaComidasPlan();
+        if (idComida!=0){
+            dieta = dietaData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
+            int idDieta = dieta.getIdDieta();
+            dietaComidaData.eliminarDietaComida(idComida, idDieta);
+        }
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
     }//GEN-LAST:event_jbQuitarActionPerformed
 
 
@@ -796,7 +979,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JButton jbBucarPaciente;
-    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbQuitar;
     private com.toedter.calendar.JDateChooser jdchFechaFinal;
@@ -813,23 +995,30 @@ public class abmDietas extends javax.swing.JInternalFrame {
 
 private void armarCabeceraTabla(){
         ArrayList<Object> filaCabecera = new ArrayList();
+        filaCabecera.add("Id Comida");
         filaCabecera.add("Nombre");
         filaCabecera.add("Detalle");
         filaCabecera.add("Horario");
         filaCabecera.add("CantCalorias");
         for (Object it: filaCabecera){
             modelo.addColumn(it);
+            modelo1.addColumn(it);
         }
         jtComidasPlan.setModel(modelo);
+<<<<<<< HEAD
         jtComidasDisponibles.setModel(modelo);
+=======
+        jtComidasDisponibles.setModel(modelo1);
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
 }
-private void borrarFilaTabla(){
-    int indice = modelo.getRowCount() -1;
+private void borrarTabla(DefaultTableModel model){
+    int indice = model.getRowCount();
     for (int i = indice; i>=0; i--){
-        modelo.removeRow(i);
+        model.removeRow(i);
     }
 }
 
+<<<<<<< HEAD
 private void cargarTablaComidasDieta(Dieta dieta){
     DietaData dData = new DietaData();
     DietaComidaData dcData = new DietaComidaData();
@@ -852,6 +1041,54 @@ private void cargarTablaComidasDisponibles (Dieta dieta){
     }
 }
 
+=======
+private int borrarFilaComidasPlan(){
+    int idComida;
+    idComida=0;
+    int indice = jtComidasPlan.getSelectedRow();
+    if (indice != -1){
+        idComida= (Integer)jtComidasPlan.getValueAt(indice,0);
+        modelo.removeRow(indice);
+    } else {
+        JOptionPane.showMessageDialog(null, "Seleccione una comida a Qitar.");
+    }
+    return idComida;
+}
+
+private void cargarTablasComidas(int i){
+    DietaData dData = new DietaData();
+    DietaComidaData dcData = new DietaComidaData();
+    Dieta dieta;
+    dieta=dData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
+    
+    if (i==1){
+        ArrayList<Comida> listaC = (ArrayList) dcData.listarDietaComida(dieta);
+        for (Comida comida: listaC){
+            modelo.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
+                comida.getHorario(), comida.getCantCalorias()});
+        }
+    }else{
+        ArrayList<Comida> listaC = (ArrayList) dcData.listarComida(dieta);
+        for (Comida comida: listaC){
+            modelo1.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
+                comida.getHorario(), comida.getCantCalorias()});
+        }
+    }
+}
+
+//private void cargarTablaComidasDisponibles (){
+//    DietaData dData = new DietaData();
+//    DietaComidaData dcData = new DietaComidaData();
+//    Dieta dieta;
+//    dieta=dData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
+//    ArrayList<Comida> listaC = (ArrayList) dcData.listarComida(dieta);
+//    for (Comida comida: listaC){
+//        modelo1.addRow(new Object[] {comida.getNombre(), comida.getDetalle(), 
+//            comida.getHorario(), comida.getCantCalorias()});
+//    }
+//}
+
+>>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
 
 }
 

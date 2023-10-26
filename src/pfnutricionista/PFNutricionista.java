@@ -53,7 +53,8 @@ public class PFNutricionista {
         Dieta dieta;
         dieta=dData.buscarDieta(33859634);
         dcData.listarDietaComida(dieta);
-        
+        System.out.println(" ------------------------------------------- ");
+        dcData.listarComida(dieta);
         
         System.out.println("fin 2");
     }
