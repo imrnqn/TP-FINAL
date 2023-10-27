@@ -64,10 +64,6 @@ public class DietaData {
         
         String sql = "SELECT idDieta, nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal"
                 + " FROM dieta WHERE idPaciente=? AND estado = true";
-<<<<<<< HEAD
-        PreparedStatement ps;
-=======
->>>>>>> 36fef886e5a8ccf633f5b22e8d46fee7b1650c90
         try {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql);
