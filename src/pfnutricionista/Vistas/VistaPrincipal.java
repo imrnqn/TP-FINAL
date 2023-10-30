@@ -45,7 +45,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Dietas");
-        setFocusableWindowState(false);
         setLocation(new java.awt.Point(0, 0));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1415, 1004));
         setMaximumSize(new java.awt.Dimension(1415, 1004));
@@ -54,7 +53,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1415, 1004));
 
-        jdpPrincipal.setToolTipText("Plan de Dietas");
         jdpPrincipal.setMaximumSize(new java.awt.Dimension(1415, 991));
         jdpPrincipal.setMinimumSize(new java.awt.Dimension(120, 40));
         jdpPrincipal.setName(""); // NOI18N
