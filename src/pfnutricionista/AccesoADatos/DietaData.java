@@ -22,8 +22,6 @@ import pfnutricionista.entidades.Paciente;
 public class DietaData {
     
     private  Connection conexion = null;
-    //private  Dieta dieta = new Dieta();
-    //private  Paciente paciente = new Paciente();
 
     public DietaData() {
         this.conexion=Conexion.getConnection();
@@ -32,21 +30,22 @@ public class DietaData {
      public void guardarDieta (Dieta dieta){
         String sql = "INSERT INTO dieta (nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal, estado)"
                 + " VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement ps;
+        
         try {          
-                ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, dieta.getNombre());
-                ps.setInt(2, dieta.getPaciente().getIdPaciente());
-                ps.setObject(3, (LocalDate) dieta.getFechaInicial());
-                ps.setDouble(4, dieta.getPesoInicial());
-                ps.setDouble(5, dieta.getPesoFinal());
-                ps.setObject(6, (LocalDate) dieta.getFechaFinal());
-                ps.setBoolean(7, true);
-                int exito = ps.executeUpdate();
-                if (exito == 1) {
-                    JOptionPane.showMessageDialog(null, "Dieta añadida con exito.");
+            PreparedStatement ps;    
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, dieta.getNombre());
+            ps.setInt(2, dieta.getPaciente().getIdPaciente());
+            ps.setObject(3, (LocalDate) dieta.getFechaInicial());
+            ps.setDouble(4, dieta.getPesoInicial());
+            ps.setDouble(5, dieta.getPesoFinal());
+            ps.setObject(6, (LocalDate) dieta.getFechaFinal());
+            ps.setBoolean(7, true);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Dieta añadida con exito.");
             }
-                ps.close();
+            ps.close();
             } catch (SQLException ex){
                 if (ex.getErrorCode()== 1062){
                     JOptionPane.showMessageDialog(null, "Error. Dato duplicado.");
@@ -61,12 +60,11 @@ public class DietaData {
         Paciente paciente;
         PacienteData pacienteData = new PacienteData();
         paciente = pacienteData.buscarPaciente(DNI);
-        
         String sql = "SELECT idDieta, nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal"
                 + " FROM dieta WHERE idPaciente=? AND estado = true";
         try {
             PreparedStatement ps;
-            ps = conexion.prepareStatement(sql);
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, paciente.getIdPaciente());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -77,7 +75,7 @@ public class DietaData {
                 dieta.setPaciente(paciente);
                 dieta.setFechaInicial((LocalDate) rs.getDate("fechaInicial").toLocalDate());
                 dieta.setPesoInicial(rs.getDouble("pesoInicial"));
-                dieta.setPesoFinal(rs.getDouble("pesoFianl"));
+                dieta.setPesoFinal(rs.getDouble("pesoFinal"));
                 dieta.setFechaFinal((LocalDate) rs.getDate("fechaFinal").toLocalDate());
                 dieta.setEstado(true);
                 
@@ -88,23 +86,21 @@ public class DietaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Dieta.");
         }
-       
-        return dieta;
+    return dieta;
     }
      
      
      
     public void modificarDieta(Dieta dieta) {
         DietaData dietaData = new DietaData();
-        PacienteData pacienteData = new PacienteData();
         Paciente paciente;
         Dieta dietaId;
         String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? WHERE idDieta = ?";
-        PreparedStatement ps;
         dietaId = dietaData.buscarDieta(dieta.getPaciente().getDni());
         paciente = dietaId.getPaciente();
         try {
-            ps = conexion.prepareStatement(sql);
+            PreparedStatement ps;
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, dieta.getNombre());
             ps.setInt(2, paciente.getIdPaciente());
             ps.setObject(3, (LocalDate) dieta.getFechaInicial());
@@ -125,10 +121,11 @@ public class DietaData {
     }
 
     public void eliminarDieta(int idDieta) {
-        PreparedStatement ps;
+        
         try {
+            PreparedStatement ps;
             String sql = "UPDATE dieta SET estado = 0 WHERE idDieta = ? ";
-            ps = conexion.prepareStatement(sql);
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, idDieta);
             int exito = ps.executeUpdate();
             if (exito == 1) {

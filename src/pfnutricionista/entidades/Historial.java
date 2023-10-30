@@ -14,19 +14,19 @@ import java.time.LocalDate;
  */
 public class Historial {
     private int idHistorial;
-    private Paciente paciente;
+    private int idPaciente;
     private double peso;
     private LocalDate fechaRegistro;
 
     public Historial(int idHistorial, Paciente paciente, double peso, LocalDate fechaRegistro) {
         this.idHistorial = idHistorial;
-        this.paciente = paciente;
+        this.idPaciente = idPaciente;
         this.peso = peso;
         this.fechaRegistro = fechaRegistro;
     }
 
     public Historial(Paciente paciente, double peso, LocalDate fechaRegistro) {
-        this.paciente = paciente;
+        this.idPaciente = idPaciente;
         this.peso = peso;
         this.fechaRegistro = fechaRegistro;
     }
@@ -42,12 +42,12 @@ public class Historial {
         this.idHistorial = idHistorial;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public int getidPaciente() {
+        return idPaciente;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setidPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public double getPeso() {
@@ -68,7 +68,7 @@ public class Historial {
 
     @Override
     public String toString() {
-        return "Historial{" + "idHistorial=" + idHistorial + ", paciente=" + paciente + ", peso=" + peso + ", fechaRegistro=" + fechaRegistro + '}';
+        return "Historial{" + "idHistorial=" + idHistorial + ", paciente=" + idPaciente + ", peso=" + peso + ", fechaRegistro=" + fechaRegistro + '}';
     }
     
     

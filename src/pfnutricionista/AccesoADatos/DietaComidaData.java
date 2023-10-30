@@ -10,12 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pfnutricionista.entidades.Comida;
 import pfnutricionista.entidades.Dieta;
-import pfnutricionista.entidades.DietaComida;
 
 /**
  *
@@ -34,7 +32,6 @@ public class DietaComidaData {
     public void guardarDietaComida (int idDieta, int idComida){
         String sql = "INSERT INTO dietaComida (idDieta, idComida)"
                 + " VALUES ( ?, ?)";
-        
         try {          
                 PreparedStatement ps;
                 ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -57,8 +54,8 @@ public class DietaComidaData {
     public void eliminarDietaComida (int idComida, int idDieta) {
         PreparedStatement ps;
         try {
-            String sql = "UPDATE dietacomida SET estado = 0 WHERE idComida = ? AND idDieta = ?";
-            ps = conexion.prepareStatement(sql);
+            String sql = "DELETE FROM dietacomida WHERE idComida = ? AND idDieta = ?";
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, idComida);
             ps.setInt(2, idDieta);
             int exito = ps.executeUpdate();
@@ -72,32 +69,24 @@ public class DietaComidaData {
     }
     
     public ArrayList<Comida> listarDietaComida(Dieta dieta) {
-//        ArrayList<DietaComida> listaComidas = new ArrayList<>();
-//        ComidaData comidaData = new ComidaData();
-//        DietaComida dietaComida = new DietaComida();
+
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
         Comida comida = new Comida();
         String sql = "SELECT idDietaComida, idComida, idDieta FROM dietaComida WHERE idDieta = ? AND estado = 1";
         PreparedStatement ps;
         try {
-            ps = conexion.prepareStatement(sql);
+            ps = conexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
             ResultSet rs=ps.executeQuery();
-            // ps.getGeneratedKeys();
             while (rs.next()) {
-//               dietaComida.setIdDietaComida(rs.getInt("idDietaComida"));
-//               dietaComida.setDieta(dieta);
-//               dietaComida.setComida(comidaData.buscarComida(rs.getInt("idComida")));
-//              listaComidas.add(dietaComida);
-                comida = comidaData.buscarComida(rs.getInt("idcomida"));
+           comida = comidaData.buscarComida(rs.getInt("idcomida"));
                 listaComidas.add(comida);
             }
-                ps.close();
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla DietaComida.");
         }
-        System.out.println(listaComidas);
         return listaComidas;
     }
     
@@ -107,14 +96,13 @@ public class DietaComidaData {
         Comida comida = new Comida();
         String sql = "SELECT comida.idComida FROM comida WHERE comida.estado = true AND comida.idComida "
                 + "NOT IN (SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta = ?)";
-        
         try {
             PreparedStatement ps;
-            ps = conexion.prepareStatement(sql);
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
             ResultSet rs;
             rs=ps.executeQuery();
-            //ps.getGeneratedKeys();
+            
             while (rs.next()) {
                 comida = comidaData.buscarComida(rs.getInt("comida.idcomida"));
                 listaComidas.add(comida);
@@ -126,14 +114,5 @@ public class DietaComidaData {
         System.out.println(listaComidas);
         return listaComidas;
     }
-    
-    
-    
-
-    @Override
-    public String toString() {
-        return "DietaComidaData{" + "conexion=" + conexion + ", dieta=" + dieta + ", comida=" + comida + '}';
-    }
-    
 }
 

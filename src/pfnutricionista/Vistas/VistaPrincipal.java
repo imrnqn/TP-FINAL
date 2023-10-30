@@ -23,6 +23,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,23 +34,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        principal = new javax.swing.JDesktopPane();
+        jdpPrincipal = new javax.swing.JDesktopPane();
         jbPacientes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jbMenu = new javax.swing.JButton();
         jbDieta = new javax.swing.JButton();
-        jbCitas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1200, 1200));
-        setPreferredSize(new java.awt.Dimension(1200, 1200));
+        setTitle("Sistema Dietas");
+        setFocusableWindowState(false);
+        setLocation(new java.awt.Point(0, 0));
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 1415, 1004));
+        setMaximumSize(new java.awt.Dimension(1415, 1004));
+        setMinimumSize(new java.awt.Dimension(120, 40));
+        setName("principal"); // NOI18N
+        setResizable(false);
+        setSize(new java.awt.Dimension(1415, 1004));
 
-        principal.setMaximumSize(new java.awt.Dimension(147483647, 147483647));
-        principal.setPreferredSize(new java.awt.Dimension(147483647, 147483647));
+        jdpPrincipal.setToolTipText("Plan de Dietas");
+        jdpPrincipal.setMaximumSize(new java.awt.Dimension(1415, 991));
+        jdpPrincipal.setMinimumSize(new java.awt.Dimension(120, 40));
+        jdpPrincipal.setName(""); // NOI18N
+        jdpPrincipal.setPreferredSize(new java.awt.Dimension(1415, 991));
 
         jbPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add_contact_twitter_user_icon_127131.png"))); // NOI18N
         jbPacientes.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -63,7 +72,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html><center>Gestion<p> NutriciOn<html>");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("<html><center>Gestión<p> Nutrición<html>");
 
         jbMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
         jbMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -79,144 +89,112 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial.png"))); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PACIENTE");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MENU");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("DIETA");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CITAS");
+        jdpPrincipal.setLayer(jbPacientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jbMenu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jbDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        principal.setLayer(jbPacientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jbMenu, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jbDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jbCitas, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        principal.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
-        principal.setLayout(principalLayout);
-        principalLayout.setHorizontalGroup(
-            principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(principalLayout.createSequentialGroup()
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addComponent(jbCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5))
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addComponent(jbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4))
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3))
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2))))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(600, 600, 600)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23555, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+        javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
+        jdpPrincipal.setLayout(jdpPrincipalLayout);
+        jdpPrincipalLayout.setHorizontalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbDieta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)))
+                    .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(467, Short.MAX_VALUE))
         );
-        principalLayout.setVerticalGroup(
-            principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(principalLayout.createSequentialGroup()
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel2)))
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jbMenu))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel3)))
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jbDieta))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel4)))
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jbCitas))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel5)))
-                .addContainerGap(111, Short.MAX_VALUE))
+        jdpPrincipalLayout.setVerticalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbMenu)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(30, 30, 30)))
+                        .addGap(34, 34, 34)
+                        .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbDieta)))
+                    .addComponent(jbPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(586, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
+        jdpPrincipal.getAccessibleContext().setAccessibleName("");
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
-        // TODO add your handling code here:
-        /*principal.removeAll();
-        principal.repaint();
         abmPacientes pac = new abmPacientes();
-        pac.setVisible(true);
-        principal.add(pac);
-        principal.moveToFront(pac);*/
-        //corregido
-        abmPacientes pac = new abmPacientes();
-        principal.add(pac);
+        jdpPrincipal.add(pac);
         pac.show();
     }//GEN-LAST:event_jbPacientesActionPerformed
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
-        // TODO add your handling code here:
         abmComidas comida = new abmComidas();
-        principal.add(comida);
+        jdpPrincipal.add(comida);
         comida.show();
     }//GEN-LAST:event_jbMenuActionPerformed
 
     private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
-        // TODO add your handling code here:
         abmDietas dieta = new abmDietas();
-        principal.add(dieta);
+        jdpPrincipal.add(dieta);
         dieta.show();
     }//GEN-LAST:event_jbDietaActionPerformed
 
@@ -260,11 +238,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton jbCitas;
     private javax.swing.JButton jbDieta;
     private javax.swing.JButton jbMenu;
     private javax.swing.JButton jbPacientes;
-    private javax.swing.JDesktopPane principal;
+    private javax.swing.JDesktopPane jdpPrincipal;
     // End of variables declaration//GEN-END:variables
 }
