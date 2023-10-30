@@ -178,11 +178,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
-        abmPacientes pac = new abmPacientes();
-        jdpPrincipal.add(pac);
-        pac.show();
-    }//GEN-LAST:event_jbPacientesActionPerformed
+    private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
+        abmDietas dieta = new abmDietas();
+        jdpPrincipal.add(dieta);
+        dieta.show();
+    }//GEN-LAST:event_jbDietaActionPerformed
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
         abmComidas comida = new abmComidas();
@@ -190,11 +190,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         comida.show();
     }//GEN-LAST:event_jbMenuActionPerformed
 
-    private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
-        abmDietas dieta = new abmDietas();
-        jdpPrincipal.add(dieta);
-        dieta.show();
-    }//GEN-LAST:event_jbDietaActionPerformed
+    private void jbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPacientesActionPerformed
+        abmPacientes pac = new abmPacientes();
+        jdpPrincipal.add(pac);
+        pac.show();
+    }//GEN-LAST:event_jbPacientesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -63,7 +63,7 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         setNormalBounds(new java.awt.Rectangle(0, 0, 640, 499));
         setOpaque(true);
         setRequestFocusEnabled(false);
-        setVisible(true);
+        setVisible(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 0));

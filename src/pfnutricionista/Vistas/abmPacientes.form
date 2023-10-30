@@ -20,7 +20,7 @@
     </Property>
     <Property name="opaque" type="boolean" value="true"/>
     <Property name="requestFocusEnabled" type="boolean" value="false"/>
-    <Property name="visible" type="boolean" value="true"/>
+    <Property name="visible" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

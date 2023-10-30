@@ -60,7 +60,7 @@
       <Dimension value="[1215, 926]"/>
     </Property>
     <Property name="selected" type="boolean" value="true"/>
-    <Property name="visible" type="boolean" value="true"/>
+    <Property name="visible" type="boolean" value="false"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>

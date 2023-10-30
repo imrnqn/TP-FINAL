@@ -19,7 +19,7 @@
       <Rectangle value="[80, 100, 122, 0]"/>
     </Property>
     <Property name="selected" type="boolean" value="true"/>
-    <Property name="visible" type="boolean" value="true"/>
+    <Property name="visible" type="boolean" value="false"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
