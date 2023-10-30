@@ -814,7 +814,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         Dieta dieta = dietaData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
         int idDieta = dieta.getIdDieta();
         dietaComidaData.eliminarDietaComida(idcomida, idDieta);
-        borrarTabla(modelo1);
+        borrarTabla(1);
         cargarTablasComidas(1);
     }//GEN-LAST:event_jbQuitarActionPerformed
 
@@ -839,7 +839,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         Dieta dieta = dietaData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
         int idDieta = dieta.getIdDieta();
         dietaComidaData.guardarDietaComida(idComida, idDieta);
-        borrarTabla(modelo1);
+        borrarTabla(0);
         cargarTablasComidas(1);
     }//GEN-LAST:event_jbAgregarActionPerformed
 
@@ -915,12 +915,28 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jtControlPeso.setModel(modelo2);
     }
 
-    private void borrarTabla(DefaultTableModel model){
-        int indice = model.getRowCount();
-        for (int i = indice; i>=0; i--){
-            model.removeRow(i);
+    private void borrarTabla(int tabla){
+        int indice;
+        if (tabla == 0){
+            indice = modelo.getRowCount();
+            for (int i = indice; i>=0; i--){
+            modelo.removeRow(i);
+            }
+        }
+        if (tabla == 1) {
+            indice = modelo1.getRowCount();
+            for (int i = indice; i>=0; i--){
+            modelo1.removeRow(i);     
+            }
+        }
+        if (tabla == 2){
+            indice = modelo1.getRowCount();
+            for (int i = indice; i>=0; i--){
+            modelo1.removeRow(i); 
+            }
         }
     }
+        
 
     private int borrarFilaComidasPlan(){
         int idComida;
@@ -975,7 +991,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             idHistorial = (Integer)jtControlPeso.getValueAt(indice,0);
             modelo2.removeRow(indice);
             registroData.eliminarControlPeso(idHistorial);
-            borrarTabla(modelo2);
+            borrarTabla(2);
             cargarTablaPesos();
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione el registro a eliminar");
