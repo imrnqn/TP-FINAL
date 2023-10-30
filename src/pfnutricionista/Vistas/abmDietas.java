@@ -833,12 +833,13 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         DietaComidaData dietaComidaData = new DietaComidaData();
         DietaData dietaData = new DietaData();
-        int indice = modelo1.getRowCount();
-        int idComida= (Integer)jtComidasDisponibles.getValueAt(indice,0);
+        int indice = jtComidasDisponibles.getSelectedRow();
+        int idComida= (Integer) jtComidasDisponibles.getValueAt(indice,0);
         modelo1.removeRow(indice);
         Dieta dieta = dietaData.buscarDieta(Integer.parseInt(jtPacDNI.getText()));
         int idDieta = dieta.getIdDieta();
-        dietaComidaData.eliminarDietaComida(idComida, idDieta);
+        dietaComidaData.guardarDietaComida(idComida, idDieta);
+        borrarTabla(modelo1);
         cargarTablasComidas(1);
     }//GEN-LAST:event_jbAgregarActionPerformed
 
