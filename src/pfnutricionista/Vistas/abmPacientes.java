@@ -286,13 +286,14 @@ public class abmPacientes extends javax.swing.JInternalFrame {
         PacienteData pacienteData = new PacienteData();
         if (jtDni.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Error. El campo DNI no puede estar vacio.");
-        }
+        } else {
         paciente.setApellido(jtApellido.getText());
         paciente.setNombre(jtNombre.getText());
         paciente.setDni(Integer.parseInt(jtDni.getText()));
         paciente.setDomicilio(jtDomicilio.getText());
         paciente.setTelefono(jtTelefono.getText());
         pacienteData.guardarPaciente(paciente);
+        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed

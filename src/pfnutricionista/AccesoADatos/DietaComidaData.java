@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pfnutricionista.entidades.Comida;
@@ -24,7 +26,7 @@ public class DietaComidaData {
     private  Connection conexion = null;
     private  Dieta dieta = new Dieta();
     private  Comida comida = new Comida();
-
+        
     public DietaComidaData() {
         this.conexion=Conexion.getConnection();
     }
@@ -116,16 +118,16 @@ public class DietaComidaData {
         return listaComidas;
     }
     
-    public ArrayList<Comida> listarComidaXPorciones (Dieta dieta, double porcentaje){
+    public ArrayList<Comida> listarComidaXPorcentaje (Dieta dieta, int limite){
+        System.out.println(limite);
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
-        Comida comida = new Comida();
-        String sql =   "SELECT dietacomida.idCommida FROM dietacomida WHERE dietacomida.idDietaComida = ? LIMIT ?";
+        String sql =   "SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta=? LIMIT ?";
         try {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
-            ps.setDouble(2, porcentaje);
+            ps.setInt(2, limite);
             ResultSet rs;
             rs=ps.executeQuery();
             while (rs.next()) {

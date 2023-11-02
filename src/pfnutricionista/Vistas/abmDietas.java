@@ -43,7 +43,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         initComponents();
         numJTextDoub(jtPesoInicial, 6);
         numJTextDoub(jtPesoFinal, 6);
-        numJTextDoub(jtPorcentaje,6);
+        numJTextDoub(jtPorcentaje,5);
         modelo = new DefaultTableModel();
         modelo1 = new DefaultTableModel();
         modelo2 = new DefaultTableModel();
@@ -1067,7 +1067,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         modelo1.removeRow(indice);
         Dieta dieta = dietaData.buscarDietaXdni(Integer.parseInt(jtPacDNI.getText()));
         int idDieta = dieta.getIdDieta();
-        dietaComidaData.guardarDietaComida(idComida, idDieta);
+        dietaComidaData.guardarDietaComida(idDieta, idComida);
         borrarTabla(1);
         cargarTablasComidas(1, dieta);
     }//GEN-LAST:event_jbAgregarCActionPerformed
@@ -1104,13 +1104,16 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }//GEN-LAST:event_jtCaloriasKeyReleased
 
     private void jbPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorcentajeActionPerformed
-        double porcentaje = Double.parseDouble(jtPorcentaje.getText());
-        if (porcentaje != 0) {
+        String porciento = jtPorcentaje.getText();
+        int limite = Integer.parseInt(porciento);
+        
+        if (limite != 0) {
             DietaData dietaData = new DietaData();
             borrarTabla(4);
             Dieta dieta = new Dieta();
             dieta = dietaData.buscarDietaXdni(Integer.parseInt(jtPacDNI.getText()));
-            cargarTablaComidasxPorcentaje(porcentaje, dieta);
+            System.out.println(dieta);
+            cargarTablaComidasxPorcentaje(limite, dieta);
         }
                 
     }//GEN-LAST:event_jbPorcentajeActionPerformed
@@ -1320,9 +1323,9 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }
     }
     
-    private void cargarTablaComidasxPorcentaje(double porcentaje, Dieta dieta){
+    private void cargarTablaComidasxPorcentaje(int limite, Dieta dieta){
         DietaComidaData dcData = new DietaComidaData();
-        ArrayList<Comida> listaC = (ArrayList) dcData.listarComidaXPorciones(dieta, porcentaje);
+        ArrayList<Comida> listaC = (ArrayList) dcData.listarComidaXPorcentaje(dieta, limite);
             for (Comida comida: listaC){
                 modelo3.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
                     comida.getHorario(), comida.getCantCalorias()});
