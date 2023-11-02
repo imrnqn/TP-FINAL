@@ -116,7 +116,7 @@ public class DietaComidaData {
         return listaComidas;
     }
     
-    public ArrayList<Comida> listarComidaXPorciones (Dieta dieta, int porcentaje){
+    public ArrayList<Comida> listarComidaXPorciones (Dieta dieta, double porcentaje){
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
         Comida comida = new Comida();
@@ -125,7 +125,7 @@ public class DietaComidaData {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
-            ps.setInt(2, porcentaje);
+            ps.setDouble(2, porcentaje);
             ResultSet rs;
             rs=ps.executeQuery();
             while (rs.next()) {

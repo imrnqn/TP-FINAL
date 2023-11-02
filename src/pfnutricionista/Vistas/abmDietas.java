@@ -717,8 +717,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jtCalorias.getAccessibleContext().setAccessibleDescription("Ingrese el valor maximo de calorias a listar...");
-
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0), 3));
         jPanel1.setForeground(new java.awt.Color(51, 153, 0));
 
@@ -735,6 +733,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }
         });
 
+        jtPorcentaje.setEditable(false);
         jtPorcentaje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtPorcentaje.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jtPorcentaje.setToolTipText("Ingrese el valor maximo de calorias a listar...");
@@ -826,7 +825,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                             .addComponent(jpControlPeso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jpPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jpPlanComidas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jpDieta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -989,6 +988,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 jbBaja.setEnabled(true);
                 activarDesactivarBotonesComidas(true);
                 activarDesactivarBotonesHistorial(true);
+                activarDesactivarBotonesLimite(true);
                 
             }else{
                 vaciarCamposDieta();
@@ -1104,7 +1104,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }//GEN-LAST:event_jtCaloriasKeyReleased
 
     private void jbPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorcentajeActionPerformed
-        int porcentaje = Integer.parseInt(jtPorcentaje.getText());
+        double porcentaje = Double.parseDouble(jtPorcentaje.getText());
         if (porcentaje != 0) {
             DietaData dietaData = new DietaData();
             borrarTabla(4);
@@ -1201,6 +1201,11 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jtPesoInicial.setText(" ");
         jtPesoFinal.setText(" ");
         jtNombre.requestFocus();
+    }
+    
+    private void activarDesactivarBotonesLimite(boolean logico){
+        jtPorcentaje.setEditable(logico);
+        jbPorcentaje.setEnabled(logico);
     }
     
     private void activarDesactivarBotonesComidas(boolean logico){
@@ -1315,7 +1320,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             }
     }
     
-    private void cargarTablaComidasxPorcentaje(int porcentaje, Dieta dieta){
+    private void cargarTablaComidasxPorcentaje(double porcentaje, Dieta dieta){
         DietaComidaData dcData = new DietaComidaData();
         ArrayList<Comida> listaC = (ArrayList) dcData.listarComidaXPorciones(dieta, porcentaje);
             for (Comida comida: listaC){
