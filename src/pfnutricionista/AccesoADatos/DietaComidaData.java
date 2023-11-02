@@ -73,15 +73,41 @@ public class DietaComidaData {
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
         Comida comida = new Comida();
-        String sql = "SELECT idDietaComida, idComida, idDieta FROM dietaComida WHERE idDieta = ? AND estado = 1";
-        PreparedStatement ps;
+        String sql = "SELECT idDietaComida, idComida, idDieta FROM dietaComida WHERE idDieta = ?";
         try {
+            PreparedStatement ps;
             ps = conexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
-           comida = comidaData.buscarComida(rs.getInt("idcomida"));
+                comida = comidaData.buscarComida(rs.getInt("idComida"));
                 listaComidas.add(comida);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla DietaComida.");
+        }
+        
+        return listaComidas;
+    }
+    
+    public ArrayList<Comida> listarComidaXcalorias (Dieta dieta, int calorias){
+        ArrayList<Comida> listaComidas = new ArrayList<>();
+        ComidaData comidaData = new ComidaData();
+        Comida comida = new Comida();
+        String sql = "SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta=? "
+                + "NOT IN (SELECT comida.idComida FROM comida WHERE comida.estado=true AND comida.idComida AND comida.cantCalorias<=?)";
+        try {
+            PreparedStatement ps;
+            ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, dieta.getIdDieta());
+            ps.setInt(2, calorias);
+            ResultSet rs;
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                comida = comidaData.buscarComida(rs.getInt("dietacomida.idComida"));
+                listaComidas.add(comida);
+                
             }
             ps.close();
         } catch (SQLException ex) {
@@ -90,28 +116,83 @@ public class DietaComidaData {
         return listaComidas;
     }
     
-    public ArrayList<Comida> listarComida(Dieta dieta) {
+    public ArrayList<Comida> listarComidaXPorciones (Dieta dieta, int porcentaje){
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
         Comida comida = new Comida();
-        String sql = "SELECT comida.idComida FROM comida WHERE comida.estado = true AND comida.idComida "
-                + "NOT IN (SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta = ?)";
+        String sql =   "SELECT dietacomida.idCommida FROM dietacomida WHERE dietacomida.idDietaComida = ? LIMIT ?";
         try {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dieta.getIdDieta());
+            ps.setInt(2, porcentaje);
             ResultSet rs;
             rs=ps.executeQuery();
-            
             while (rs.next()) {
-                comida = comidaData.buscarComida(rs.getInt("comida.idcomida"));
+                comida = comidaData.buscarComida(rs.getInt("dietacomida.idComida"));
                 listaComidas.add(comida);
+                
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla DietaComida.");
         }
-        System.out.println(listaComidas);
+        return listaComidas;
+    }
+    
+    
+    public ArrayList<Comida> listarComida(Dieta dieta) {
+        ArrayList<Comida> listaComidas = new ArrayList<>();
+        ComidaData comidaData = new ComidaData();
+        Comida comida = new Comida();
+        boolean bandera;
+        if (dieta.getIdDieta()>0){
+            try {
+            String sql = "SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta = ?";
+            PreparedStatement ps;
+                ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, dieta.getIdDieta());
+                ResultSet rs;
+                rs=ps.executeQuery();
+                bandera = true;
+            }catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "El paciente no tiene comidas en la dieta.");
+                bandera = false;
+            }
+            if (bandera){
+            String sql = "SELECT comida.idComida FROM comida WHERE comida.estado = true AND comida.idComida "
+                            + "NOT IN (SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta = ?)";
+            try {
+                PreparedStatement ps;
+                ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, dieta.getIdDieta());
+                ResultSet rs;
+                rs=ps.executeQuery();
+                while (rs.next()) {
+                    comida = comidaData.buscarComida(rs.getInt("comida.idcomida"));
+                    listaComidas.add(comida);
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla DietaComida.");
+            }
+            }
+        } else {
+            String sql = "SELECT comida.idComida FROM comida WHERE comida.estado = true";
+            try {
+                PreparedStatement ps;
+                ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ResultSet rs;
+                rs=ps.executeQuery();
+                while (rs.next()) {
+                    comida = comidaData.buscarComida(rs.getInt("comida.idcomida"));
+                    listaComidas.add(comida);
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Comida.");
+            }
+        }
         return listaComidas;
     }
 }

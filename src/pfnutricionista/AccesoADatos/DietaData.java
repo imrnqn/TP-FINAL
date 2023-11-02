@@ -6,6 +6,7 @@
 package pfnutricionista.AccesoADatos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,35 +56,41 @@ public class DietaData {
             }
     }
      
-    public Dieta buscarDieta(int DNI){
+    public Dieta buscarDietaXdni(int dni){
         Dieta dieta = new Dieta();
         Paciente paciente;
         PacienteData pacienteData = new PacienteData();
-        paciente = pacienteData.buscarPaciente(DNI);
+        paciente = pacienteData.buscarPacienteXdni(dni);
         String sql = "SELECT idDieta, nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal"
-                + " FROM dieta WHERE idPaciente=? AND estado = true";
-        try {
+                + " FROM dieta WHERE idPaciente = ? AND estado = true";
+        try{
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, paciente.getIdPaciente());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                System.out.println(rs.getInt("idPaciente"));
-                paciente = pacienteData.buscarPacientXid(rs.getInt("idPaciente"));
                 dieta.setIdDieta(rs.getInt("idDieta"));
                 dieta.setNombre(rs.getString("nombre"));
                 dieta.setPaciente(paciente);
                 dieta.setFechaInicial((LocalDate) rs.getDate("fechaInicial").toLocalDate());
                 dieta.setPesoInicial(rs.getDouble("pesoInicial"));
-                dieta.setPesoFinal(rs.getDouble("pesoFinal"));
-                dieta.setFechaFinal((LocalDate) rs.getDate("fechaFinal").toLocalDate());
+                if (rs.getDouble("pesoFinal")!= 0){
+                    dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+                }else{
+                    dieta.setPesoFinal(0);
+                }
+                if (rs.getDate("fechaFinal")!= null){
+                    dieta.setFechaFinal((LocalDate)rs.getDate("fechaFinal").toLocalDate());
+                }else{
+                    dieta.setFechaFinal(null);
+                }
                 dieta.setEstado(true);
                 
             } else {
-                JOptionPane.showMessageDialog(null, "Error. La dieta no existe.");
+                JOptionPane.showMessageDialog(null, "El paciente no tiene dieta.");
             }
             ps.close();
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Dieta.");
         }
     return dieta;
@@ -96,7 +103,7 @@ public class DietaData {
         Paciente paciente;
         Dieta dietaId;
         String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? WHERE idDieta = ?";
-        dietaId = dietaData.buscarDieta(dieta.getPaciente().getDni());
+        dietaId = dietaData.buscarDietaXdni(dieta.getPaciente().getDni());
         paciente = dietaId.getPaciente();
         try {
             PreparedStatement ps;

@@ -104,6 +104,7 @@ public class abmComidas extends javax.swing.JInternalFrame {
         });
 
         jbAlta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbAlta.setForeground(new java.awt.Color(51, 153, 0));
         jbAlta.setText("Alta");
         jbAlta.setToolTipText("");
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +114,7 @@ public class abmComidas extends javax.swing.JInternalFrame {
         });
 
         jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbBuscar.setForeground(new java.awt.Color(51, 153, 0));
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,9 +123,11 @@ public class abmComidas extends javax.swing.JInternalFrame {
         });
 
         jbModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbModificar.setForeground(new java.awt.Color(51, 153, 0));
         jbModificar.setText("Modificar");
         jbModificar.setActionCommand("jbModificar");
         jbModificar.setAutoscrolls(true);
+        jbModificar.setEnabled(false);
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbModificarActionPerformed(evt);
@@ -131,7 +135,9 @@ public class abmComidas extends javax.swing.JInternalFrame {
         });
 
         jbBaja.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbBaja.setForeground(new java.awt.Color(51, 153, 0));
         jbBaja.setText("Baja");
+        jbBaja.setEnabled(false);
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBajaActionPerformed(evt);
@@ -275,7 +281,9 @@ public class abmComidas extends javax.swing.JInternalFrame {
                 jtaDetalle.setText(comida.getDetalle());
                 jtNombre.setText(comida.getNombre());
                 jtCalorias.setText(Integer.toString(comida.getCantCalorias()));
-                jcbHorario.setSelectedItem(comida.getHorario());             
+                jcbHorario.setSelectedItem(comida.getHorario());
+                jbBaja.setEnabled(true);
+                jbModificar.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed

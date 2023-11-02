@@ -52,15 +52,23 @@ public class PFNutricionista {
 //        System.out.println(pacienteData1.buscarPaciente("P","",0));
 //        
 //        DietaComidaData dcData = new DietaComidaData();
-//        DietaData dData = new DietaData();
+          DietaData dData = new DietaData();
 //        Dieta dieta;
-//        dieta=dData.buscarDieta(33859634);
+//        dieta=dData.buscarDietaXdni(33859634);
 //        dcData.listarDietaComida(dieta);
 //        System.out.println(" ------------------------------------------- ");
 //        dcData.listarComida(dieta);
 //        
 //        System.out.println("fin 2");
+
+
 //    }
-       
+      DietaComidaData dietaComidaData = new DietaComidaData();
+      Dieta dieta;
+      DietaData dietaData = new DietaData();
+      dieta = dietaData.buscarDietaXdni(2);
+        System.out.println(dieta.getPaciente().getApellido());
+      dietaComidaData.listarComida(dieta);
+      
     }
 }

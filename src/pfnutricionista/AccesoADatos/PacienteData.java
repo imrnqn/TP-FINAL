@@ -59,7 +59,7 @@ public class PacienteData {
         Paciente pacienteId = new Paciente();
         String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, telefono = ?  WHERE idPaciente = ?";
         PreparedStatement ps;
-        pacienteId = pacienteData.buscarPaciente(paciente.getDni());
+        pacienteId = pacienteData.buscarPacienteXdni(paciente.getDni());
         try {
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, paciente.getNombre());
@@ -72,7 +72,7 @@ public class PacienteData {
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Los datos del paciente furon modiificados exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El paciente no existe.");
+                JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -100,26 +100,23 @@ public class PacienteData {
 
 
 //ok
-    public Paciente buscarPaciente(int dni){
+    public Paciente buscarPacienteXdni(int dni){
         Paciente paciente = new Paciente();
-        
-        String sql = "SELECT idpaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
+        String sql = "SELECT idPaciente, apellido, nombre, dni, domicilio, telefono, estado FROM paciente "
                 + "WHERE dni = ? AND estado = true";
-        
         try {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
-                paciente.setIdPaciente(rs.getInt("idpaciente"));
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
-                paciente.setEstado(true);
+                paciente.setEstado(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
             }
@@ -132,8 +129,8 @@ public class PacienteData {
     
     public Paciente buscarPacientXid(int idPaciente){
         Paciente paciente = new Paciente();
-        
-        String sql = "SELECT idPaciente, apellido, nombre, dni, domicilio, telefono FROM paciente "
+        System.out.println(paciente);    
+        String sql = "SELECT idPaciente, apellido, nombre, dni, domicilio, telefono, estado FROM paciente "
                 + "WHERE idPaciente = ? AND estado = true";
         
         try {
@@ -141,7 +138,6 @@ public class PacienteData {
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, idPaciente);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 paciente.setIdPaciente(rs.getInt("idPaciente"));
                 paciente.setApellido(rs.getString("apellido"));
@@ -149,7 +145,7 @@ public class PacienteData {
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
-                paciente.setEstado(true);
+                paciente.setEstado(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "Error. El paciente no existe.");
             }
@@ -157,11 +153,11 @@ public class PacienteData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente.");
         }
-        
+        System.out.println(paciente);    
     return paciente;
     }
     
-    public Paciente buscarPaciente(String apellido, String nombre){
+    public Paciente buscarPacientexApyNom(String apellido, String nombre){
         Paciente paciente = new Paciente();
         apellido = apellido+"%";
         nombre = nombre+"%";
@@ -173,9 +169,7 @@ public class PacienteData {
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, apellido);
             ps.setString(2, nombre);
-            
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 paciente.setIdPaciente(rs.getInt("idpaciente"));
                 paciente.setApellido(rs.getString("apellido"));
@@ -193,5 +187,4 @@ public class PacienteData {
         }
     return paciente;
     }
-
 }
