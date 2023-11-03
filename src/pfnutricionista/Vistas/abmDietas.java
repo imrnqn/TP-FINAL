@@ -109,7 +109,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtComidasDisponibles = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jbPorcentaje = new javax.swing.JButton();
+        jbLimite = new javax.swing.JButton();
         jtPorcentaje = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtComidasPorecentaje = new javax.swing.JTable();
@@ -720,16 +720,16 @@ public class abmDietas extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0), 3));
         jPanel1.setForeground(new java.awt.Color(51, 153, 0));
 
-        jbPorcentaje.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbPorcentaje.setForeground(new java.awt.Color(51, 153, 0));
-        jbPorcentaje.setText("Limite");
-        jbPorcentaje.setToolTipText("Mostrar comidas...");
-        jbPorcentaje.setActionCommand("");
-        jbPorcentaje.setEnabled(false);
-        jbPorcentaje.setSelected(true);
-        jbPorcentaje.addActionListener(new java.awt.event.ActionListener() {
+        jbLimite.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbLimite.setForeground(new java.awt.Color(51, 153, 0));
+        jbLimite.setText("Limite");
+        jbLimite.setToolTipText("Mostrar comidas...");
+        jbLimite.setActionCommand("");
+        jbLimite.setEnabled(false);
+        jbLimite.setSelected(true);
+        jbLimite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPorcentajeActionPerformed(evt);
+                jbLimiteActionPerformed(evt);
             }
         });
 
@@ -783,7 +783,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jbPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -796,7 +796,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,7 +806,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
                     .addContainerGap(82, Short.MAX_VALUE)))
         );
 
-        jbPorcentaje.getAccessibleContext().setAccessibleName("Mostrar comidas...");
+        jbLimite.getAccessibleContext().setAccessibleName("Mostrar comidas...");
         jtPorcentaje.getAccessibleContext().setAccessibleDescription("Ingrese el porcentaje limite...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -867,11 +867,11 @@ public class abmDietas extends javax.swing.JInternalFrame {
             jtNombre.requestFocus();
         } else {
             dieta.setNombre(jtNombre.getText());
-            dieta.setFechaInicial(LocalDate.parse(jdchFechaInicial.getDateFormatString()));
-            dieta.setFechaFinal(LocalDate.parse(jdchFechaFinal.getDateFormatString()));
+            dieta.setFechaInicial((Date.valueOf(jdchFechaInicial.getDate().toInstant().atZone(ZoneId.systemDefault()).format(dtf))).toLocalDate());
+            dieta.setFechaFinal((Date.valueOf(jdchFechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).format(dtf))).toLocalDate());
             dieta.setPesoInicial(Double.valueOf(jtPesoInicial.getText()));
             dieta.setPesoFinal(Double.valueOf(jtPesoFinal.getText()));
-            dietaData.modificarDieta(dieta);
+            dietaData.modificarDieta(dieta, Integer.parseInt(jtPacDNI.getText()));
             jtNombre.requestFocus();
         }
     }//GEN-LAST:event_jbModificarActionPerformed
@@ -892,7 +892,6 @@ public class abmDietas extends javax.swing.JInternalFrame {
             dieta.setPaciente(paciente);
             fInicial = (Date.valueOf(jdchFechaInicial.getDate().toInstant().atZone(ZoneId.systemDefault()).format(dtf))).toLocalDate();
             if (fInicial != null) {
-                //fFinal = (Date.valueOf(jdchFechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).format(dtf))).toLocalDate();
                 dieta.setFechaInicial(fInicial);
             }
             pInicial = Double.parseDouble(jtPesoInicial.getText());
@@ -909,9 +908,9 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 dieta.setPesoFinal(pFinal);
             }
             dietaData.guardarDieta(dieta);
-            cargarTablasComidas(1, dieta);
-            cargarTablasComidas(2, dieta);
-            cargarTablaHistorial(dieta.getIdDieta());
+            cargarTablasComidas(1, dieta, true);
+            cargarTablasComidas(2, dieta, true);
+            cargarTablaHistorial(dieta.getIdDieta(), false);
             jbModificar.setEnabled(true);
             jbBaja.setEnabled(true);
             activarDesactivarBotonesComidas(true);
@@ -981,9 +980,9 @@ public class abmDietas extends javax.swing.JInternalFrame {
                 } else {
                     jtPesoFinal.setText(" ");
                 }
-                cargarTablasComidas(1, dieta);
-                cargarTablasComidas(2, dieta);
-                cargarTablaHistorial(dieta.getIdDieta());
+                cargarTablasComidas(1, dieta, true);
+                cargarTablasComidas(2, dieta, true);
+                cargarTablaHistorial(dieta.getIdDieta(), false);
                 jbModificar.setEnabled(true);
                 jbBaja.setEnabled(true);
                 activarDesactivarBotonesComidas(true);
@@ -1044,11 +1043,13 @@ public class abmDietas extends javax.swing.JInternalFrame {
         int idDieta = dieta.getIdDieta();
         dietaComidaData.eliminarDietaComida(idcomida, idDieta);
         borrarTabla(1);
-        cargarTablasComidas(1, dieta);
+        cargarTablasComidas(1, dieta, true);
+        borrarTabla(2);
+        cargarTablasComidas(2, dieta, true);
     }//GEN-LAST:event_jbQuitarCActionPerformed
 
     private void jbEliminarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarCPActionPerformed
-        eliminarReistroHistorial();
+        eliminarRegistroHistorial();
     }//GEN-LAST:event_jbEliminarCPActionPerformed
 
     private void jbGuardarCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarCPActionPerformed
@@ -1069,7 +1070,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
         int idDieta = dieta.getIdDieta();
         dietaComidaData.guardarDietaComida(idDieta, idComida);
         borrarTabla(1);
-        cargarTablasComidas(1, dieta);
+        cargarTablasComidas(1, dieta, true);
     }//GEN-LAST:event_jbAgregarCActionPerformed
 
     private void jbAgregarFilaCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarFilaCPActionPerformed
@@ -1099,24 +1100,22 @@ public class abmDietas extends javax.swing.JInternalFrame {
             borrarTabla(2);
             Dieta dieta = new Dieta();
             dieta = dietaData.buscarDietaXdni(Integer.parseInt(jtPacDNI.getText()));
-            cargarTablaComidasxCalorias(calorias, dieta);
+            cargarTablaComidasxCalorias(calorias, dieta, true);
         }
             }//GEN-LAST:event_jtCaloriasKeyReleased
 
-    private void jbPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorcentajeActionPerformed
+    private void jbLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimiteActionPerformed
         String porciento = jtPorcentaje.getText();
         int limite = Integer.parseInt(porciento);
-        
         if (limite != 0) {
             DietaData dietaData = new DietaData();
             borrarTabla(4);
             Dieta dieta = new Dieta();
             dieta = dietaData.buscarDietaXdni(Integer.parseInt(jtPacDNI.getText()));
-            System.out.println(dieta);
-            cargarTablaComidasxPorcentaje(limite, dieta);
+            cargarTablaComidasxLimite(limite, dieta, true);
         }
                 
-    }//GEN-LAST:event_jbPorcentajeActionPerformed
+    }//GEN-LAST:event_jbLimiteActionPerformed
 
     private void jtPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPorcentajeActionPerformed
         // TODO add your handling code here:
@@ -1167,8 +1166,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBucarPaciente;
     private javax.swing.JButton jbEliminarCP;
     private javax.swing.JButton jbGuardarCP;
+    private javax.swing.JButton jbLimite;
     private javax.swing.JButton jbModificar;
-    private javax.swing.JButton jbPorcentaje;
     private javax.swing.JButton jbQuitarC;
     private com.toedter.calendar.JDateChooser jdchFechaFinal;
     private com.toedter.calendar.JDateChooser jdchFechaInicial;
@@ -1208,7 +1207,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
     
     private void activarDesactivarBotonesLimite(boolean logico){
         jtPorcentaje.setEditable(logico);
-        jbPorcentaje.setEnabled(logico);
+        jbLimite.setEnabled(logico);
     }
     
     private void activarDesactivarBotonesComidas(boolean logico){
@@ -1296,53 +1295,82 @@ public class abmDietas extends javax.swing.JInternalFrame {
         return idComida;
     }
 
-    private void cargarTablasComidas(int i, Dieta dieta){
+    private void cargarTablasComidas(int i, Dieta dieta, boolean bandera){
         DietaComidaData dcData = new DietaComidaData();
         if (i==1){
-            ArrayList<Comida> listaA = (ArrayList) dcData.listarDietaComida(dieta);
-            for (Comida comida: listaA){
-                modelo.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
-                    comida.getHorario(), comida.getCantCalorias()});
-            }
+            ArrayList<Comida> lista = (ArrayList) dcData.listarDietaComida(dieta);
+            if (!lista.isEmpty()) { 
+                for (Comida comida: lista){
+                    modelo.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
+                        comida.getHorario(), comida.getCantCalorias()});
+                }
+            }else{
+                if (bandera){
+                    JOptionPane.showMessageDialog(null, "No hay comidas para listar.");
+                }
         }
+    }
         if (i==2){
-            ArrayList<Comida> listaA = (ArrayList) dcData.listarComida(dieta);
-            for (Comida comida: listaA){
-                modelo1.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
-                    comida.getHorario(), comida.getCantCalorias()});
+            ArrayList<Comida> lista = (ArrayList) dcData.listarComida(dieta);
+            if (!lista.isEmpty()) { 
+                for (Comida comida: lista){
+                    modelo1.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
+                        comida.getHorario(), comida.getCantCalorias()});
+                }
+            }else{
+                if (bandera){
+                    JOptionPane.showMessageDialog(null, "No hay comidas para listar.");
+                }
             }
         }
     }
     
-    private void cargarTablaComidasxCalorias(int calorias, Dieta dieta){
+    private void cargarTablaComidasxCalorias(int calorias, Dieta dieta, boolean bandera){
         DietaComidaData dcData = new DietaComidaData();
-        ArrayList<Comida> listaC = (ArrayList) dcData.listarComidaXcalorias(dieta, calorias);
-            for (Comida comida: listaC){
+        ArrayList<Comida> lista = (ArrayList) dcData.listarComidaXcalorias(dieta, calorias);
+        if (!lista.isEmpty()) {    
+            for (Comida comida: lista){
                 modelo1.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
                     comida.getHorario(), comida.getCantCalorias()});
             }
+        }else{
+            if (bandera){
+            JOptionPane.showMessageDialog(null, "No hay comidas para listar.");
+            }
+        }
     }
     
-    private void cargarTablaComidasxPorcentaje(int limite, Dieta dieta){
+    private void cargarTablaComidasxLimite(int limite, Dieta dieta, boolean bandera){
         DietaComidaData dcData = new DietaComidaData();
-        ArrayList<Comida> listaC = (ArrayList) dcData.listarComidaXPorcentaje(dieta, limite);
-            for (Comida comida: listaC){
+        ArrayList<Comida> lista = (ArrayList) dcData.listarComidaXPorcentaje(dieta, limite);
+        if (!lista.isEmpty()) {
+            for (Comida comida: lista){
                 modelo3.addRow(new Object[] {comida.getIdComida(), comida.getNombre(), comida.getDetalle(), 
                     comida.getHorario(), comida.getCantCalorias()});
             }
-    }
+        }else{
+            if (bandera){
+                JOptionPane.showMessageDialog(null, "No hay comidas para listar.");
+            }
+        }}
     
 
-    private void cargarTablaHistorial(int idDieta){
+    private void cargarTablaHistorial(int idDieta, boolean bandera){
         DietaData dietaData = new DietaData();
         HistorialData historialData = new HistorialData();
-        ArrayList<Historial> listaCPeso = (ArrayList) historialData.listarHistorial(idDieta) ;
-        for (Historial historial: listaCPeso) {
+        ArrayList<Historial> lista = (ArrayList) historialData.listarHistorial(idDieta) ;
+        if (!lista.isEmpty()) {
+        for (Historial historial: lista) {
             modelo2.addRow(new Object[] {historial.getIdHistorial(),Date.valueOf(historial.getFechaRegistro()).toLocalDate(), historial.getPeso()});
+        }
+         }else{
+            if (bandera) {
+                JOptionPane.showMessageDialog(null, "No hay registro para listar.");
+            }
         }
     }
 
-    private void eliminarReistroHistorial(){
+    private void eliminarRegistroHistorial(){
     HistorialData registroData = new HistorialData();
         int indice = jtControlPeso.getSelectedRow();
         if (indice != -1){

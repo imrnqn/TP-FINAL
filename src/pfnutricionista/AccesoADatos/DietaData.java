@@ -98,12 +98,12 @@ public class DietaData {
      
      
      
-    public void modificarDieta(Dieta dieta) {
+    public void modificarDieta(Dieta dieta, int dni) {
         DietaData dietaData = new DietaData();
         Paciente paciente;
         Dieta dietaId;
         String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? WHERE idDieta = ?";
-        dietaId = dietaData.buscarDietaXdni(dieta.getPaciente().getDni());
+        dietaId = dietaData.buscarDietaXdni(dni);
         paciente = dietaId.getPaciente();
         try {
             PreparedStatement ps;
