@@ -32,7 +32,7 @@ public class DietaComidaData {
     }
     
     public void guardarDietaComida (int idDieta, int idComida){
-        String sql = "INSERT INTO dietaComida (idDieta, idComida)"
+        String sql = "INSERT INTO dietacomida (idDieta, idComida)"
                 + " VALUES ( ?, ?)";
         try {          
                 PreparedStatement ps;
@@ -97,8 +97,9 @@ public class DietaComidaData {
         ArrayList<Comida> listaComidas = new ArrayList<>();
         ComidaData comidaData = new ComidaData();
         Comida comida = new Comida();
+        System.out.println(calorias);
         String sql = "SELECT dietacomida.idComida FROM dietacomida WHERE dietacomida.idDieta=? "
-                + "NOT IN (SELECT comida.idComida FROM comida WHERE comida.estado=true AND comida.idComida AND comida.cantCalorias<=?)";
+                + "NOT IN (SELECT comida.idComida FROM comida WHERE comida.estado=true AND comida.cantCalorias<=?)";
         try {
             PreparedStatement ps;
             ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

@@ -1327,6 +1327,7 @@ public class abmDietas extends javax.swing.JInternalFrame {
     
     private void cargarTablaComidasxCalorias(int calorias, Dieta dieta, boolean bandera){
         DietaComidaData dcData = new DietaComidaData();
+        System.out.println(calorias + "cargarTabla");
         ArrayList<Comida> lista = (ArrayList) dcData.listarComidaXcalorias(dieta, calorias);
         if (!lista.isEmpty()) {    
             for (Comida comida: lista){
@@ -1391,8 +1392,8 @@ public class abmDietas extends javax.swing.JInternalFrame {
         int idPaciente = (Integer) (paciente.getIdPaciente());
         int indice = jtControlPeso.getSelectedRow();
         if ( indice != -1){
-            LocalDate fechaRegistro = (LocalDate) jtControlPeso.getValueAt(indice,1);
-            int peso = (Integer)jtControlPeso.getValueAt(indice,2);
+            LocalDate fechaRegistro = LocalDate.parse(jtControlPeso.getValueAt(indice,1).toString());
+            double peso = Double.valueOf(jtControlPeso.getValueAt(indice,2).toString());
             registroData.guardarControlPeso(idPaciente, peso, fechaRegistro);
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione el registro cargado");
